@@ -16,8 +16,9 @@ Y2K and neon cyberpunk.
   and counts alongside it. One of eight themed
   factory silhouettes is assigned stably per space; its saved color appears as a
   small sign detail. Inactive factory icons are dimmed; for the active space,
-  the background softly brightens and the sign pulses while the factory stays
-  still. The `+` creates a space, right-click opens Herdr's space menu (including
+  the slightly smaller factory leaves more of the scene visible as the background
+  softly brightens, the sign pulses, and a few tiny color-matched dots twinkle.
+  The `+` creates a space, right-click opens Herdr's space menu (including
   rename and close), and dragging reorders spaces within the same machine. In the
   included layout these cards replace the standalone Spaces panel, so spaces
   appear once.

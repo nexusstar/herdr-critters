@@ -507,7 +507,7 @@ export default class RetroAgents extends View {
   spaceStage(space, scene, color, buildingAssignments) {
     const width = 74;
     const height = 62;
-    const size = 54;
+    const size = 48;
     const left = Math.round((width - 4 - size) / 2);
     const top = Math.round((height - 4 - size) / 2);
     const building = this.spaceBuilding(space, color, buildingAssignments, size, space.active)
@@ -522,11 +522,18 @@ export default class RetroAgents extends View {
       .h(height - 4);
     if (space.active) background = background.loop("opacity", { from: 0.9, to: 1, period: 4200 });
 
+    const glints = space.active
+      ? [[7, 10, 2, 1700], [61, 13, 3, 2400], [8, 36, 2, 2100], [61, 42, 2, 2800]]
+        .map(([x, y, size, period]) => div().absolute().left(x).top(y).size(size).rounded_full().bg(color)
+          .loop("opacity", { from: 0.18, to: 0.85, period }))
+      : [];
+
     return div().relative().w(width).h(height).flex_none().overflow_hidden()
       .bg(scene.card)
       .border(2)
       .border_color(scene.card)
       .child(background)
+      .children(glints)
       .child(building);
   }
 

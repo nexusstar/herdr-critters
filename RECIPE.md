@@ -63,8 +63,8 @@ the Spaces mod.
   underlying silhouettes in every theme, rendered in that theme's visual style;
   the saved space color appears as a small sign detail, not as the icon's
   background. Inactive factory art renders at 55% opacity. For the active space,
-  the background softly brightens and the sign pulses while the factory stays
-  still.
+  the smaller factory leaves more of the scene visible while the background
+  softly brightens, the sign pulses, and a few tiny color-matched dots twinkle.
 - **Names**: each agent gets a random name from a list of 30 (pixel, byte,
   nova, rook, ziggy, mochi, bolt, echo, juno, kiwi, luma, miso, nimbus, onyx,
   pepper, quill, rusty, sprout, tango, umbra, vega, waffle, yeti, zephyr, comet,
