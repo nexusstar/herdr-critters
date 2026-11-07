@@ -2,31 +2,48 @@
 
 # herdr-critters
 
-A Herdr desktop app mod: the Agents sidebar as cards with a critter for each
-agent. The look is a theme: retro pixel art, an Edo woodblock print, glossy
-Y2K or neon cyberpunk.
+A Herdr desktop app mod with summary cards for spaces and a themed critter card
+for each agent. Themes include retro pixel art, an Edo woodblock print, glossy
+Y2K and neon cyberpunk.
 
-- One card per agent: a sprite, the agent's name with its status box (the
-  theme's word, for example `IDLE`, `BUSY`, `HELP!`, `DONE` in retro) beside
-  it, and the session name under it (else the tab).
+- A collapsible **SPACES** section lists every space Herdr exposes, in Herdr's
+  order. Each card shows its name, a local/remote machine icon, branch or
+  folder, tab and agent counts, and the highest-priority agent status. Hover the
+  icon for the machine name. The active space is highlighted;
+  click a card to select it. Spaces without agents say `NO AGENTS`.
+- Space cards use the agent cards' framed layout, with a large factory stage
+  over the theme's agent-scene background and the space name, status, location
+  and counts alongside it. One of eight themed
+  factory silhouettes is assigned stably per space; its saved color appears as a
+  small sign detail. Inactive factory icons are dimmed; for the active space,
+  the background softly brightens and the sign pulses while the factory stays
+  still. The `+` creates a space, right-click opens Herdr's space menu (including
+  rename and close), and dragging reorders spaces within the same machine. In the
+  included layout these cards replace the standalone Spaces panel, so spaces
+  appear once.
+- The **AGENTS** section keeps one themed critter card per agent: a sprite, the
+  agent's theme-specific status box, and the session name (else the tab).
 - Every agent gets a name from a list of 30 (4 to 7 letters, `names` in the
   theme), kept across restarts and never two the same. Each name is a
   character with its own sprite.
 - Each sprite has one picture per status: idle (eyes shut), working (a bolt),
   blocked (a `!` and a sweat drop), done (happy eyes and a check). The sprite
   box background and border follow the status too.
-- Cards are grouped by machine or by space: click `BY MACHINE` / `BY SPACE` in
-  the panel header. Each group header shows `busy/total`. A space header uses
-  the space's color from the Spaces list.
+- Agent cards are grouped by machine or by space: click `BY MACHINE` / `BY SPACE`
+  in the AGENTS header. Each group header shows `busy/total`. A space header uses
+  that space's color.
 - The corner badge moves: `z` when idle, a spinner when working, a blinking `!`
   when blocked, a check when done. Working sprites bob.
-- Click a card to focus its pane. Hover to pin or unpin.
-- Click a group header to collapse the group to its header line. Hover a
-  card and click `-` to make it one thin line; `+` opens it again.
-- Right-click a card for a menu: pin, collapse the card, collapse its group.
-- A narrow sidebar (under 160 px) shows only the sprite boxes.
-- The look is a theme (see [Themes](#themes)). The header button next to
-  `BY MACHINE` shows the active theme (`RETRO`); click it to switch to the next.
+- Click an agent card to focus its pane. Hover to pin or unpin.
+- Click a group header to collapse it. Hover an agent card and click `-` to
+  make it one thin line; `+` opens it again.
+- Right-click an agent card for a menu: pin, collapse the card, or collapse its
+  group.
+- The fixed header has the dither icon and theme switch at the left and keeps
+  the total working-agent count at the right. Under 160 px, a combined compact
+  rail shows a create button and factory icons above the existing agent sprites.
+- The look is a theme (see [Themes](#themes)). Click the theme button to cycle
+  through the available looks.
 
 
 ## Install
@@ -35,8 +52,10 @@ Ask your Herdr agent:
 
 > Read ~/.config/herdr-app/AGENTS.md, then add this layout: https://github.com/izerozlu/herdr-critters
 
-To use only the mod in a layout of your own, set that layout's agents block to
-`"content": { "mod": "herdr-critters" }`.
+To use the mod in a layout of your own, set its agents block to
+`"content": { "mod": "herdr-critters" }`. The mod renders both spaces and
+agents in that block and can replace a separate Spaces panel without losing
+space creation, rename, close or reorder controls.
 
 ## Develop
 
@@ -54,7 +73,8 @@ A symlink does not work: Herdr does not load a mod's images through one.
 ## Themes
 
 Seven themes ship. Each has its own names and critters (30, or 12 in noir,
-deepsea and garden), colors, scenes, status words and fonts.
+deepsea and garden), factory illustrations, colors, scenes, status words and
+fonts.
 
 | Theme | Look | Status words | Fonts |
 | --- | --- | --- | --- |
@@ -73,21 +93,23 @@ name and art path from the active theme object. It never hard-codes a look.
 
 - `themes/<id>/theme.js` holds the data (see `RECIPE.md` `## Themes` for the
   keys).
-- `themes/<id>/art/` holds the pictures the view shows (SVG, or PNG for noir):
-  the sprites, scenes and icons.
+- `themes/<id>/art/` holds the pictures the view shows (SVG, or PNG for raster
+  critter themes): sprites, scenes, icons and the eight factory illustrations.
+  Factory illustrations are SVG in every theme.
 - `themes/index.js` lists the themes. The header button cycles through them.
 
-Everything look-related lives in `mods/herdr-critters/themes/<id>/`:
+Runtime theme data and generated artwork live in `mods/herdr-critters/themes/<id>/`:
 
 ```
 mods/herdr-critters/
   main.js
+  icons/              laptop and network location indicators
   fonts/              shared by all themes
   themes/
     index.js          registry (THEMES, DEFAULT_THEME, themeById)
     retro/
       theme.js        colors, scenes, status words, names, fonts, art path
-      art/            the SVGs (PNGs for noir, deepsea, garden)
+      art/            agent SVGs/PNGs plus the eight factory SVGs
     edo/              same layout
     y2k/              same layout
     noir/             same layout
@@ -108,14 +130,18 @@ unknown id falls back to `retro`. Retro keeps its names in `localStorage` key
 2. Add the art in `themes/<id>/art/` (`sprite-<name>-<status>.svg` for every
    name, `scene-<status>.svg`, `icon-machine-<scene>.svg` for every scene,
    `icon-dither.svg`). Make them with an art package (see [Art](#art)). For
-   PNG art, the same names end in `.png`, and `theme.js` sets `artExt: "png"`.
+   PNG agent art, the same names end in `.png`, and `theme.js` sets
+   `artExt: "png"`. Add the theme's factory-art palette to
+   `art/space_factory_art.py` too; the factory illustrations stay SVG.
 3. Import it in `themes/index.js` and add it to `THEMES`. The order is the
    cycle order of the header button.
 
 ## Art
 
 `art/generate.py` writes a theme's art to `mods/herdr-critters/themes/<id>/art/`
-from the Python package `art/themes/<id>/`. A package draws in one of three ways:
+from the Python package `art/themes/<id>/`. It also writes the eight space-factory
+SVGs from `art/space_factory_art.py`; those remain vector assets even for raster
+critter themes. Agent-art packages draw in one of three ways:
 
 - **Pixel grids** (retro): the package exports ASCII grids, one character per
   pixel, and per-status poses. The engine turns them into SVG and adds the
@@ -179,6 +205,10 @@ Herdr loads them from the mod's `fonts/` folder.
 
 - The palette is fixed per theme. It does not follow the Herdr theme.
 - Past 30 agents, names repeat with a number (`pixel 2`) and share a sprite.
+- Space factory silhouettes are assigned by space ID and kept in shared state.
+  They remain stable across restarts, reordering and theme changes. The eight
+  shapes are kept distinct while available; after that, new spaces reuse a shape
+  without changing existing assignments.
 
 ## Thanks
 

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="96" height="96" shape-rendering="geometricPrecision">
+      <defs><linearGradient id="wallGradient" x1="0" y1="0" x2="0.8" y2="1">
+          <stop offset="0" stop-color="#f9fdff"/><stop offset=".48" stop-color="#b9d1e4"/><stop offset="1" stop-color="#86a9c7"/>
+        </linearGradient><linearGradient id="roofGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#effaff"/><stop offset="1" stop-color="#7bb5d6"/>
+        </linearGradient></defs>
+      <style>
+      .wall { fill:url(#wallGradient); stroke:#6e8298; stroke-width:0.9; stroke-linejoin:round; }
+      .roof { fill:url(#roofGradient); stroke:#6e8298; stroke-width:0.9; stroke-linejoin:round; }
+      .shade { fill:#91aeca; stroke:#6e8298; stroke-width:0.9; stroke-linejoin:round; }
+      .edge { fill:none; stroke:#6e8298; stroke-width:0.9; stroke-linecap:round; stroke-linejoin:round; }
+      .trimline { fill:none; stroke:#c3f56a; stroke-width:.65; stroke-linecap:round; stroke-linejoin:round; }
+      .piping { fill:none; stroke:#ee7bd7; stroke-width:.8; stroke-linecap:round; stroke-linejoin:round; }
+      .window { fill:#f7ffff; stroke:#6e8298; stroke-width:.55; }
+      .door { fill:#91aeca; stroke:#6e8298; stroke-width:.65; }
+      .signframe { fill:#91aeca; stroke:#6e8298; stroke-width:.7; }
+      .line { fill:none; stroke:#7694ad; stroke-width:.65; stroke-linecap:round; }
+      .finish { fill:none; stroke:#c3f56a; stroke-width:.55; stroke-linecap:round; }
+      .extra { fill:none; stroke:#ee7bd7; stroke-width:.8; stroke-linecap:round; stroke-linejoin:round; }
+      .shine { fill:#ffffff; fill-opacity:.72; stroke:none; }
+      .glowdot { fill:#ee7bd7; filter:url(#softGlow); }
+    </style>
+      <g class="factory">
+        <path class="wall" d="M4 13h16v9H4z"/>
+        <path class="shade" d="M15.8 13H20v9h-4.2z"/>
+        <path class="edge" d="M4 13h16M4 22h16"/>
+
+      <path class="shade" d="M8 9v5m8-5v5M7 8h10"/>
+      <path class="roof" d="M7 5a5 2 0 0 1 10 0v4H7z"/>
+      <path class="edge" d="M7 5a5 2 0 0 1 10 0v4H7zM8 9h8"/>
+      <path class="trimline" d="M8 5a4 1.2 0 0 0 8 0"/>
+      <path class="roof" d="M4 12h16v2H4z"/>
+      <path class="edge" d="M4 12h16v2H4z"/>
+
+        <path class="window" d="M6.4 15h2.5v2.5H6.4zM15.2 15h2.5v2.5h-2.5z"/>
+        <path class="line" d="M7.65 15v2.5m8.8-2.5v2.5"/>
+        <path class="door" d="M17 18h2v4h-2z"/>
+        <path class="signframe" d="M9.5 16.5h5v3h-5z"/>
+        <path class="finish" d="M10 20h4"/>
+        <path class="finish" d="M5 14h13l-2 2H6z"/><path class="shine" d="M5 14h2v6H5zm2 0h8v1H7z"/>
+      </g>
+    </svg>

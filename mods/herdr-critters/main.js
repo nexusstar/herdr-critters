@@ -1,5 +1,5 @@
-// Agents as retro cards: a pixel sprite in a scene, a status badge, the space and
-// what it's doing. Grouped by machine; each machine has its own scene.
+// Spaces as compact summary cards, agents as themed critters with a sprite,
+// status badge and scene. Agent groups follow machine or space order.
 
 import { View, div, image, svg } from "gpui-kit";
 import { v_flex, h_flex } from "gpui-base";
@@ -54,7 +54,25 @@ const groupBy = () => (shared(GROUP_KEY) === "space" ? "space" : "machine");
 // each a shared map of id -> true.
 const COLLAPSED_KEY = "herdr-critters.collapsed";
 const COMPACT_KEY = "herdr-critters.compact";
+const SPACES_COLLAPSED_KEY = "herdr-critters.spaces-collapsed";
+const SPACE_BUILDINGS_KEY = "herdr-critters.space-buildings";
+const SPACE_BUILDINGS = [
+  "mill", "power", "tank", "warehouse", "foundry", "waterworks", "assembly", "refinery",
+];
+const SPACE_MARK_COLORS = {
+  ansi6: "#22a99a",
+  ansi3: "#e3814f",
+  ansi4: "#5b8def",
+  ansi5: "#8b7cf6",
+  ansi2: "#3fae6a",
+  ansi1: "#d9649a",
+};
 const isSet = (key, id) => Boolean(shared(key)?.[id]);
+function spaceBuildingHash(id) {
+  let hash = 2166136261;
+  for (const char of String(id)) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+  return hash >>> 0;
+}
 function toggle(key, id) {
   const map = { ...(shared(key) ?? {}) };
   if (map[id]) delete map[id];
@@ -77,6 +95,8 @@ export default class RetroAgents extends View {
     this.hovered = null;
     this.look = null;
     this.picked = {};
+    this.pressedSpace = null;
+    this.overSpace = null;
   }
 
   // The status entry for an agent's word; an unknown word reads as idle.
@@ -368,8 +388,52 @@ export default class RetroAgents extends View {
       .child(this.stage(a, scene, 36, 30, this.picked[a.address]));
   }
 
-  // The rail: one small stage per agent.
-  rail(list, sceneOf) {
+  openSpaceMenu(space, cx) {
+    cx.stop_propagation();
+    openOverlay({ mod: "menu", kind: "popup", width: 200, height: 260, props: { tab: "space", target: { id: space.id } } });
+  }
+
+  spaceRailCard(space, appTheme, buildingAssignments) {
+    const C = this.look.colors;
+    const color = this.spaceColor(space, appTheme);
+    const activeBg = /^#[0-9a-f]{6}$/i.test(color) ? `${color}24` : C.divider;
+    return div()
+      .id(`space-rail-${space.id}`)
+      .size(28)
+      .flex_none()
+      .flex()
+      .items_center()
+      .justify_center()
+      .bg(space.active ? activeBg : C.bg)
+      .border(1)
+      .border_color(space.active ? color : C.btnEdge)
+      .cursor_pointer()
+      .tooltip(space.machine ? `${space.name} · ${space.machine}` : space.name)
+      .on_click(() => run("space.select", { id: space.id }))
+      .on_mouse_down("right", (_e, cx) => this.openSpaceMenu(space, cx))
+      .child(this.spaceBuilding(space, color, buildingAssignments, 24, space.active));
+  }
+
+  newSpaceRailButton() {
+    const C = this.look.colors;
+    return div()
+      .id("critters-space-new-rail")
+      .size(28)
+      .flex_none()
+      .flex()
+      .items_center()
+      .justify_center()
+      .rounded(6)
+      .text_color(C.sub)
+      .cursor_pointer()
+      .hover((el) => el.bg(C.divider).text_color(C.text))
+      .tooltip("New space")
+      .on_click((_e, cx) => { cx.stop_propagation(); run("space.new"); })
+      .child(svg("mods/workspace-chrome/plus.svg").size(14));
+  }
+
+  // The narrow rail keeps spaces selectable above the existing agent sprites.
+  rail(list, sceneOf, spacesList, appTheme, buildingAssignments) {
     const C = this.look.colors;
     return v_flex()
       .size_full()
@@ -378,29 +442,245 @@ export default class RetroAgents extends View {
       .pt(8)
       .gap(6)
       .overflow_y_scrollbar()
-      .children(list.map((a) => this.miniStage(a, sceneOf(a))));
+      .children([
+        this.newSpaceRailButton(),
+        ...spacesList.map((space) => this.spaceRailCard(space, appTheme, buildingAssignments)),
+        div().w(24).h(1).flex_none().bg(C.divider),
+        ...list.map((a) => this.miniStage(a, sceneOf(a))),
+      ]);
+  }
+
+  spaceColor(space, appTheme) {
+    const assigned = (shared("space.colors") ?? {})[space.id];
+    if (typeof assigned !== "string") return this.look.colors.machine;
+    if (assigned.startsWith("#")) return assigned;
+    return SPACE_MARK_COLORS[assigned] ?? appTheme[assigned] ?? this.look.colors.machine;
+  }
+
+  spaceBuildingAssignments(spacesList) {
+    const stored = shared(SPACE_BUILDINGS_KEY);
+    const assignments = stored && typeof stored === "object" && !Array.isArray(stored) ? { ...stored } : {};
+    const valid = new Set(SPACE_BUILDINGS);
+    const occupied = new Set(
+      spacesList.map((space) => assignments[String(space.id)]).filter((name) => valid.has(name)),
+    );
+    let changed = false;
+
+    for (const space of spacesList) {
+      const id = String(space.id);
+      if (valid.has(assignments[id])) continue;
+      const start = spaceBuildingHash(id) % SPACE_BUILDINGS.length;
+      let building = null;
+      for (let offset = 0; offset < SPACE_BUILDINGS.length; offset++) {
+        const candidate = SPACE_BUILDINGS[(start + offset) % SPACE_BUILDINGS.length];
+        if (!occupied.has(candidate)) {
+          building = candidate;
+          break;
+        }
+      }
+      if (!building) building = SPACE_BUILDINGS[start];
+      assignments[id] = building;
+      occupied.add(building);
+      changed = true;
+    }
+
+    if (changed) setShared(SPACE_BUILDINGS_KEY, assignments);
+    return assignments;
+  }
+
+  spaceBuilding(space, color, buildingAssignments, size = 24, active = false) {
+    const building = buildingAssignments[String(space.id)]
+      ?? SPACE_BUILDINGS[spaceBuildingHash(space.id) % SPACE_BUILDINGS.length];
+    const scale = size / 24;
+    return div().relative().size(size).flex_none()
+      .opacity(active ? 1 : 0.55)
+      .child(image(`${this.look.art}/space-${building}.svg`).size(size))
+      .child(div().absolute()
+        .left(Math.round(10 * scale))
+        .top(Math.round(17 * scale))
+        .w(Math.max(3, Math.round(4 * scale)))
+        .h(Math.max(2, Math.round(2 * scale)))
+        .bg(color)
+        .when(active, (el) => el.loop("opacity", { from: 0.75, to: 1, period: 1800 })));
+  }
+
+  spaceStage(space, scene, color, buildingAssignments) {
+    const width = 74;
+    const height = 62;
+    const size = 54;
+    const left = Math.round((width - 4 - size) / 2);
+    const top = Math.round((height - 4 - size) / 2);
+    const building = this.spaceBuilding(space, color, buildingAssignments, size, space.active)
+      .absolute()
+      .left(left)
+      .top(top);
+    let background = image(`${this.look.art}/scene-idle.${artExt(this.look)}`)
+      .absolute()
+      .left(0)
+      .top(0)
+      .w(width - 4)
+      .h(height - 4);
+    if (space.active) background = background.loop("opacity", { from: 0.9, to: 1, period: 4200 });
+
+    return div().relative().w(width).h(height).flex_none().overflow_hidden()
+      .bg(scene.card)
+      .border(2)
+      .border_color(scene.card)
+      .child(background)
+      .child(building);
+  }
+
+  spaceStatusBox(space) {
+    const C = this.look.colors;
+    const status = space.status ? this.statusOf(space.status) : null;
+    return this.pixel(div(), status ? 8 : 7, status?.color ?? C.sub)
+      .flex_none()
+      .px(4)
+      .h(15)
+      .flex()
+      .items_center()
+      .border(1)
+      .border_color(status?.color ?? C.btnEdge)
+      .child(status?.word ?? "NO AGENTS");
+  }
+
+  spaceSectionHeader(count, collapsed) {
+    const C = this.look.colors;
+    return h_flex()
+      .id("critters-spaces-header")
+      .flex_none()
+      .h(28)
+      .px(2)
+      .gap(7)
+      .items_center()
+      .cursor_pointer()
+      .tooltip(collapsed ? "Show spaces" : "Hide spaces")
+      .on_click(() => toggle(SPACES_COLLAPSED_KEY, "spaces"))
+      .child(div().flex_none().text_color(C.sub).child(svg(`mods/workspace-chrome/${collapsed ? "chevron-right" : "chevron-down"}.svg`).size(12)))
+      .child(this.pixel(div(), 11, C.head).font_bold().child("SPACES"))
+      .child(div().flex_1().min_w(8).h(1).bg(C.divider))
+      .child(this.pixel(div(), 10, C.sub).flex_none().child(String(count)))
+      .child(div().id("critters-space-new").size(20).flex_none().flex().items_center().justify_center().rounded(4)
+        .text_color(C.sub).cursor_pointer().hover((el) => el.bg(C.divider).text_color(C.text))
+        .tooltip("New space")
+        .on_click((_e, cx) => { cx.stop_propagation(); run("space.new"); })
+        .child(svg("mods/workspace-chrome/plus.svg").size(13)));
+  }
+
+  agentsSectionHeader(bySpace) {
+    const C = this.look.colors;
+    return h_flex()
+      .id("critters-agents-header")
+      .flex_none()
+      .h(28)
+      .pt(4)
+      .px(2)
+      .gap(6)
+      .items_center()
+      .child(this.pixel(div(), 11, C.head).font_bold().child("AGENTS"))
+      .child(div().flex_1().min_w(8).h(1).bg(C.divider))
+      .child(this.headerButton(
+        "critters-group",
+        "Group agents by machine or by space",
+        () => setShared(GROUP_KEY, bySpace ? "machine" : "space"),
+        bySpace ? "BY SPACE" : "BY MACHINE",
+      ));
+  }
+
+  spaceCard(space, appTheme, agentCount, spaceIndex, spacesList, scene, buildingAssignments) {
+    const C = this.look.colors;
+    const color = this.spaceColor(space, appTheme);
+    const activeBg = /^#[0-9a-f]{6}$/i.test(color) ? `${color}24` : C.divider;
+    const folder = (space.folder ?? "").split(/[\\/]+/).filter(Boolean).at(-1) ?? "";
+    const folderLabel = folder && folder.toLowerCase() !== space.name.toLowerCase() ? folder : "";
+    const location = space.branch || folderLabel;
+    const machineIcon = space.machine ? "network" : "laptop";
+    const machineTooltip = space.machine ? `Remote machine: ${space.machine}` : "This machine";
+    const tabCount = space.tabs.length;
+    const counts = `${tabCount} ${tabCount === 1 ? "tab" : "tabs"} · ${agentCount} ${agentCount === 1 ? "agent" : "agents"}`;
+    const fromIndex = this.pressedSpace === null ? -1 : spacesList.findIndex((item) => item.id === this.pressedSpace);
+
+    return h_flex()
+      .id(`space-card-${space.id}`)
+      .relative()
+      .flex_none()
+      .p(6)
+      .gap(10)
+      .items_center()
+      .bg(space.active ? activeBg : scene.card)
+      .border(2)
+      .border_color(space.active ? color : scene.edge)
+      .cursor_pointer()
+      .hover((el) => el.bg(space.active ? activeBg : scene.edge))
+      .when(this.pressedSpace === space.id && this.overSpace !== space.id, (el) => el.opacity(0.5))
+      .when(this.pressedSpace !== null && this.overSpace === space.id && this.pressedSpace !== space.id, (el) => el.child(
+        div().absolute().left(0).right(0).h(2).bg(appTheme.accent)
+          .when(fromIndex < spaceIndex, (line) => line.bottom(0))
+          .when(fromIndex > spaceIndex, (line) => line.top(0)),
+      ))
+      .on_mouse_down("left", () => { this.pressedSpace = space.id; this.overSpace = space.id; })
+      .on_mouse_move((_e, cx) => {
+        const source = spacesList.find((item) => item.id === this.pressedSpace);
+        const over = source && (source.machine ?? null) === (space.machine ?? null) ? space.id : null;
+        if (this.pressedSpace !== null && this.overSpace !== over) {
+          this.overSpace = over;
+          cx.notify();
+        }
+      })
+      .on_mouse_up("left", (_e, cx) => {
+        const from = this.pressedSpace;
+        const over = this.overSpace;
+        this.pressedSpace = null;
+        this.overSpace = null;
+        if (from !== null && over === space.id && from !== space.id) {
+          const index = spacesList.findIndex((item) => item.id === space.id);
+          if (index !== -1) run("space.move", { id: from, index: index + 1 });
+        } else if (from === space.id) {
+          run("space.select", { id: space.id });
+        }
+        cx.notify();
+      })
+      .on_mouse_down("right", (_e, cx) => this.openSpaceMenu(space, cx))
+      .child(this.spaceStage(space, scene, color, buildingAssignments))
+      .child(v_flex().flex_1().min_w(0).gap(4).justify_center()
+        .child(h_flex().min_w(0).gap(4).items_center()
+          .child(div().flex_1().min_w(0).font_family(this.look.fonts.mono).text_size(18).line_height("17px").text_color(C.text).truncate().child(space.name))
+          .child(this.spaceStatusBox(space)))
+        .child(h_flex().flex_1().min_w(0).gap(4).items_center()
+          .child(div().size(14).flex_none().flex().items_center().justify_center().text_color(C.sub)
+            .tooltip(machineTooltip)
+            .child(svg(`mods/herdr-critters/icons/${machineIcon}.svg`).size(12)))
+          .child(div().flex_1().min_w(0).text_size(11.5).line_height("13px").text_color(C.sub).truncate().child(location)))
+        .child(div().text_size(10).line_height("12px").text_color(C.sub).child(counts)));
   }
 
   render() {
     const look = activeTheme();
     this.useTheme(look);
     if (props()?.menu) return this.menu(props().menu);
-    const { art, colors: C, status: STATUS } = look;
-    const ext = artExt(look);
+    const { colors: C, status: STATUS } = look;
+    const t = theme();
+    const spacesList = spaces();
+    const buildingAssignments = this.spaceBuildingAssignments(spacesList);
+    const allAgents = agents();
+    const spacesById = new Map(spacesList.map((space) => [space.id, space]));
     const order = [null, ...machines().map((m) => m.name).filter((n) => n !== null)];
     const sceneOf = (a) => {
       const m = machineOf(a);
       const id = m === null ? look.localScene : look.remoteScenes[Math.max(0, order.indexOf(m) - 1) % look.remoteScenes.length];
       return { id, ...look.scenes[id] };
     };
+    const spaceSceneOf = (space) => {
+      const machine = space.machine ?? null;
+      const id = machine === null ? look.localScene : look.remoteScenes[Math.max(0, order.indexOf(machine) - 1) % look.remoteScenes.length];
+      return look.scenes[id] ?? look.scenes[look.localScene];
+    };
 
     // agents() comes in machine, space order, so neighbours make a group either way.
     // Pins go first inside their group.
     const bySpace = groupBy() === "space";
-    const t = theme();
-    const spaceColors = shared("space.colors") ?? {};
     const groups = [];
-    for (const a of agents()) {
+    for (const a of allAgents) {
       const m = machineOf(a);
       const key = bySpace ? a.space : m;
       if (groups.at(-1)?.key === key) {
@@ -408,8 +688,9 @@ export default class RetroAgents extends View {
         continue;
       }
       const scene = sceneOf(a);
+      const space = spacesById.get(a.space);
       groups.push(bySpace
-        ? { key, id: groupIdOf(a), label: (a.space_name || "space").toUpperCase(), color: t[spaceColors[a.space]], scene, members: [a] }
+        ? { key, id: groupIdOf(a), label: (a.space_name || "space").toUpperCase(), color: space ? this.spaceColor(space, t) : C.machine, scene, members: [a] }
         : { key, id: groupIdOf(a), label: m === null ? "THIS MACHINE" : m.toUpperCase(), scene, members: [a] });
     }
     for (const g of groups) g.members = [...g.members.filter((a) => a.pinned), ...g.members.filter((a) => !a.pinned)];
@@ -417,12 +698,14 @@ export default class RetroAgents extends View {
     setAgentOrder(list.map((a) => a.address));
 
     const names = this.names(list);
-    if (narrow()) return this.rail(list, sceneOf);
+    if (narrow()) return this.rail(list, sceneOf, spacesList, t, buildingAssignments);
 
     const all = terminals();
-    const tabs = spaces().flatMap((s) => s.tabs);
-    const busy = list.filter((a) => a.status === "working").length;
+    const tabs = spacesList.flatMap((s) => s.tabs);
+    const busy = allAgents.filter((a) => a.status === "working").length;
     const byAddress = new Map(all.map((t) => [t.address, t]));
+    const agentCounts = new Map();
+    for (const a of allAgents) agentCounts.set(a.space, (agentCounts.get(a.space) ?? 0) + 1);
 
     // A collapsed group shows only its header.
     const rows = groups.flatMap((g) => {
@@ -432,6 +715,23 @@ export default class RetroAgents extends View {
         ...(collapsed ? [] : g.members.map((a) => this.card(a, g.scene, tabs, names.get(a.address), sessionName(a, byAddress.get(a.address))))),
       ];
     });
+
+    const spacesCollapsed = isSet(SPACES_COLLAPSED_KEY, "spaces");
+    const spaceContent = spacesList.length === 0
+      ? v_flex().px(14).pt(4).child(this.pixel(div(), 11, C.machine).child("NO SPACES YET"))
+      : v_flex().gap(5).children(spacesList.map((space, index) => this.spaceCard(space, t, agentCounts.get(space.id) ?? 0, index, spacesList, spaceSceneOf(space), buildingAssignments)));
+    const spacesSection = v_flex().gap(4).children([
+      this.spaceSectionHeader(spacesList.length, spacesCollapsed),
+      ...(spacesCollapsed ? [] : [spaceContent]),
+    ]);
+    const agentsContent = list.length === 0
+      ? v_flex().px(14).pt(4).gap(6)
+        .child(this.pixel(div(), 11, C.machine).child("NO PLAYERS YET"))
+        .child(div().text_size(11.5).text_color(C.sub).child("Agents show up here when they report their status."))
+      : v_flex().gap(8).children(rows);
+    const agentsSection = v_flex().gap(4)
+      .child(this.agentsSectionHeader(bySpace))
+      .child(agentsContent);
 
     return v_flex()
       .size_full()
@@ -447,17 +747,19 @@ export default class RetroAgents extends View {
           .pt(6)
           .items_center()
           .justify_between()
-          .child(h_flex().flex_1().min_w(0).overflow_hidden().gap(5).items_center()
-            .child(image(`${art}/icon-dither.${ext}`).size(12).flex_none())
-            .child(this.pixel(div(), 11, C.head).flex_none().child("AGENTS"))
-            .child(this.headerButton("critters-group", "Group agents by machine or by space", () => setShared(GROUP_KEY, bySpace ? "machine" : "space"), bySpace ? "BY SPACE" : "BY MACHINE"))
+          .child(h_flex().flex_none().gap(5).items_center()
+            .child(image(`${look.art}/icon-dither.${artExt(look)}`).size(12).flex_none())
             .child(this.headerButton("critters-theme", "Switch the look of the cards", () => setShared(THEME_KEY, THEMES[(THEMES.indexOf(look) + 1) % THEMES.length].id), look.label)))
           .child(this.pixel(div(), 11, busy ? STATUS.working.color : C.head).flex_none().child(`${busy} ${STATUS.working.word}`)),
       )
-      .when(list.length === 0, (el) =>
-        el.child(v_flex().px(14).pt(10).gap(6)
-          .child(this.pixel(div(), 11, C.machine).child("NO PLAYERS YET"))
-          .child(div().text_size(11.5).text_color(C.sub).child("Agents show up here when they report their status."))))
-      .child(v_flex().id("critters-list").flex_1().min_h(0).px(10).pb(10).gap(8).overflow_y_scrollbar().children(rows));
+      .child(v_flex().id("critters-list").flex_1().min_h(0).px(10).pb(10).gap(8).overflow_y_scrollbar()
+        .on_mouse_up("left", (_e, cx) => {
+          if (this.pressedSpace !== null) {
+            this.pressedSpace = null;
+            this.overSpace = null;
+            cx.notify();
+          }
+        })
+        .children([spacesSection, agentsSection]));
   }
 }
