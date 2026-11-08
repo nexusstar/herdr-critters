@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="geometricPrecision">
+    
+    <style>
+      polygon, path, ellipse { stroke:#624936; stroke-width:0.9; stroke-linejoin:round; }
+      .wall { fill:#b8483a; }
+      .shade { fill:#7d3127; }
+      .roof { fill:#5f5a55; }
+      .roofshade { fill:#44413d; }
+      .metal { fill:#c89c69; }
+      .metalshade { fill:#876947; }
+      .win { fill:#f8f2d8; stroke-width:.45; }
+      .windim { fill:#c1bda8; stroke-width:.45; }
+      .door { fill:#53201a; stroke-width:.5; }
+      .ground { fill:#b9d58e; }
+      .lot { fill:#d8e8b0; stroke-width:.5; stroke-dasharray:1.4 1.2; }
+      .road { fill:#e8d3a8; stroke:none; }
+      .sidel { fill:#8a6a48; }
+      .sider { fill:#6e5236; }
+      .grass { fill:#8fbf6a; stroke-width:.5; }
+      .water { fill:#8fc8e0; stroke-width:.5; }
+      .tree { fill:#7fb85a; stroke-width:.6; }
+      .tree2 { fill:#f2a0c0; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#fff0c9; stroke-width:.8; stroke-dasharray:3 3; }
+      .rim { stroke:#ffffff; stroke-width:.8; }
+      .trunk { stroke:#7a5a3a; stroke-width:1.2; }
+      .leg { stroke:#ccc0a1; stroke-width:1.4; }
+      .fence { stroke:#fff0c9; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#624936; stroke-width:.8; }
+      .trimline { stroke:#fff0c9; stroke-width:.9; fill:none; }
+      .accent { stroke:#e07aa5; stroke-width:1; fill:none; }
+      .crane { fill:#fff0c9; stroke-width:.5; }
+      .craneshade { fill:#b2a88d; stroke-width:.5; }
+      .accentfill { fill:#e07aa5; stroke-width:.4; }
+      .brick { stroke:#614a32; stroke-width:.6; }
+      .hi { stroke:#ffffff; stroke-width:.7; fill:none; }
+      .winc { fill:#fff0c9; stroke-width:.4; }
+      .wine { fill:#e07aa5; stroke-width:.4; }
+      .windark { fill:#4a1d17; stroke-width:.4; }
+      .neon { stroke:#e07aa5; stroke-width:.9; fill:none; }
+      .neon2 { stroke:#fff0c9; stroke-width:.9; fill:none; }
+      .holo { fill:#fff0c9; fill-opacity:.45; stroke:#fff0c9; stroke-width:.5; }
+      .glass { fill:#ffffff; fill-opacity:.13; stroke:#fff0c9; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#fff0c9; stroke-width:1.3; fill:none; }
+      .fire { stroke:#8c846f; stroke-width:.55; fill:none; }
+      .plank { stroke:#6e2b23; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#ffffe3; stroke-width:.5; }
+      .sil { fill:#e7ffb2; stroke:#829563; stroke-width:.5; }
+      .silside { fill:#b0ca87; stroke:#829563; stroke-width:.5; }
+      .siltop { fill:#ffffd5; stroke:#829563; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#ffffff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#bead8a; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="wall" points="8.00,75.00 30.00,86.00 30.00,71.00 8.00,60.00"/>
+  <polygon class="shade" points="49.00,76.50 30.00,86.00 30.00,71.00 49.00,61.50"/>
+  <polygon class="roof" points="27.00,50.50 49.00,61.50 30.00,71.00 8.00,60.00"/>
+  <polygon class="win" points="9.38,72.31 12.12,73.69 12.12,70.94 9.38,69.56"/>
+  <polygon class="win" points="9.38,66.81 12.12,68.19 12.12,65.44 9.38,64.06"/>
+  <polygon class="win" points="14.87,75.06 17.62,76.44 17.62,73.69 14.87,72.31"/>
+  <polygon class="win" points="14.87,69.56 17.62,70.94 17.62,68.19 14.87,66.81"/>
+  <polygon class="win" points="20.38,77.81 23.12,79.19 23.12,76.44 20.38,75.06"/>
+  <polygon class="win" points="20.38,72.31 23.12,73.69 23.12,70.94 20.38,69.56"/>
+  <polygon class="win" points="25.88,80.56 28.62,81.94 28.62,79.19 25.88,77.81"/>
+  <polygon class="win" points="25.88,75.06 28.62,76.44 28.62,73.69 25.88,72.31"/>
+  <polygon class="windim" points="47.42,73.92 44.25,75.50 44.25,72.75 47.42,71.17"/>
+  <polygon class="windim" points="47.42,68.42 44.25,70.00 44.25,67.25 47.42,65.67"/>
+  <polygon class="windim" points="41.08,77.08 37.92,78.67 37.92,75.92 41.08,74.33"/>
+  <polygon class="windim" points="41.08,71.58 37.92,73.17 37.92,70.42 41.08,68.83"/>
+  <polygon class="windim" points="34.75,80.25 31.58,81.83 31.58,79.08 34.75,77.50"/>
+  <polygon class="windim" points="34.75,74.75 31.58,76.33 31.58,73.58 34.75,72.00"/>
+  <polygon class="door" points="17.00,79.50 21.00,81.50 21.00,75.50 17.00,73.50"/>
+  <polygon class="roof" points="27.00,50.50 34.33,47.17 15.33,56.67 8.00,60.00"/>
+  <polygon class="win" points="34.33,54.17 15.33,63.67 15.33,56.67 34.33,47.17"/>
+  <polygon class="wall" points="8.00,60.00 15.33,63.67 15.33,56.67"/>
+  <polygon class="roof" points="34.33,54.17 41.67,50.83 22.67,60.33 15.33,63.67"/>
+  <polygon class="win" points="41.67,57.83 22.67,67.33 22.67,60.33 41.67,50.83"/>
+  <polygon class="wall" points="15.33,63.67 22.67,67.33 22.67,60.33"/>
+  <polygon class="roof" points="41.67,57.83 49.00,54.50 30.00,64.00 22.67,67.33"/>
+  <polygon class="win" points="49.00,61.50 30.00,71.00 30.00,64.00 49.00,54.50"/>
+  <polygon class="wall" points="22.67,67.33 30.00,71.00 30.00,64.00"/>
+  <line class="plank" x1="10.50" y1="76.25" x2="10.50" y2="61.25"/>
+  <line class="plank" x1="13.50" y1="77.75" x2="13.50" y2="62.75"/>
+  <line class="plank" x1="16.50" y1="79.25" x2="16.50" y2="64.25"/>
+  <line class="plank" x1="19.50" y1="80.75" x2="19.50" y2="65.75"/>
+  <line class="plank" x1="22.50" y1="82.25" x2="22.50" y2="67.25"/>
+  <line class="plank" x1="25.50" y1="83.75" x2="25.50" y2="68.75"/>
+  <line class="plank" x1="28.50" y1="85.25" x2="28.50" y2="70.25"/>
+  <line class="plank" x1="46.50" y1="77.75" x2="46.50" y2="62.75"/>
+  <line class="plank" x1="43.50" y1="79.25" x2="43.50" y2="64.25"/>
+  <line class="plank" x1="40.50" y1="80.75" x2="40.50" y2="65.75"/>
+  <line class="plank" x1="37.50" y1="82.25" x2="37.50" y2="67.25"/>
+  <line class="plank" x1="34.50" y1="83.75" x2="34.50" y2="68.75"/>
+  <line class="plank" x1="31.50" y1="85.25" x2="31.50" y2="70.25"/>
+  <polygon class="door" points="42.50,79.75 36.50,82.75 36.50,73.75 42.50,70.75"/>
+  <line class="trimline" x1="42.50" y1="79.75" x2="36.50" y2="73.75"/>
+  <line class="trimline" x1="36.50" y1="82.75" x2="42.50" y2="70.75"/>
+  <polygon class="hay" points="9.50,62.75 19.50,57.75 20.40,59.55 9.86,63.47" style="fill:#f4ecd8"/>
+  <polygon class="hay" points="9.50,62.75 -0.50,67.75 -1.40,65.95 9.14,62.03" style="fill:#f4ecd8"/>
+  <polygon class="hay" points="9.50,62.75 14.50,72.75 12.70,73.65 8.78,63.11" style="fill:#f4ecd8"/>
+  <polygon class="hay" points="9.50,62.75 4.50,52.75 6.30,51.85 10.22,62.39" style="fill:#f4ecd8"/>
+  <circle cx="9.5" cy="62.8" r="1.4" style="fill:#7a5a3a;stroke:none"/>
+  <ellipse class="hay" cx="35.5" cy="83.2" rx="2.4" ry="1.8"/>
+  <ellipse class="hay" cx="31.0" cy="85.5" rx="2.4" ry="1.8"/>
+</svg>

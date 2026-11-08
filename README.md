@@ -11,17 +11,25 @@ Y2K and neon cyberpunk.
   folder, tab and agent counts, and the highest-priority agent status. Hover the
   icon for the machine name. The active space is highlighted;
   click a card to select it. Spaces without agents say `NO AGENTS`.
-- Space cards use the agent cards' framed layout, with a large factory stage
-  over the theme's agent-scene background and the space name, status, location
-  and counts alongside it. One of eight themed
-  factory silhouettes is assigned stably per space; its saved color appears as a
-  small sign detail. Inactive factory icons are dimmed; for the active space,
-  the slightly smaller factory leaves more of the scene visible as the background
-  softly brightens, the sign pulses, and a few tiny color-matched dots twinkle.
-  The `+` creates a space, right-click opens Herdr's space menu (including
-  rename and close), and dragging reorders spaces within the same machine. In the
-  included layout these cards replace the standalone Spaces panel, so spaces
-  appear once.
+- The spaces are one **isometric city**: a 3 x 3 block plate with roads and a
+  park in the middle, in the active theme's palette. Each of the first eight
+  spaces is a building on a lot, in Herdr's order, back to front. The building
+  is the space's factory type (one of eight, kept per space), drawn in 3D. A
+  flag in the space's saved color stands on its roof; the active space has a
+  bobbing arrow above it. A working space has soft smoke drifting from its
+  chimney; a blocked one a pulsing red light on its flagpole, a done one a
+  steady green light. Empty lots vary: a grove, a fenced plot with a `+` sign, a little park and an
+  orchard. Four themes get their own city: `cyber` is a neon megacity with a
+  tower skyline, `noir` a gothic night city with spires, a moon, searchlights,
+  fire escapes and rooftop water tanks, `deepsea` an underwater habitat with a
+  glass dome over every building and glass tubes along the roads, and
+  `garden` farmland with red barns, a windmill, hay bales and crop fields.
+  Under the city, the hovered space (else the active one)
+  shows its name, status, branch or folder and counts. Click a building to
+  select its space, an empty lot to make a new
+  space; right-click a building for Herdr's space menu. Spaces past eight are
+  listed as rows under the city. In the included layout the city replaces the
+  standalone Spaces panel, so spaces appear once.
 - The **AGENTS** section keeps one themed critter card per agent: a sprite, the
   agent's theme-specific status box, and the session name (else the tab).
 - Every agent gets a name from a list of 30 (4 to 7 letters, `names` in the

@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="geometricPrecision">
+    <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1" result="b"/><feFlood flood-color="#ff37d7" flood-opacity=".8"/>
+      <feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter></defs>
+    <style>
+      polygon, path, ellipse { stroke:#0b0618; stroke-width:0.8; stroke-linejoin:round; }
+      .wall { fill:#302044; }
+      .shade { fill:#21162e; }
+      .roof { fill:#45235d; }
+      .roofshade { fill:#321943; }
+      .metal { fill:#211835; }
+      .metalshade { fill:#161024; }
+      .win { fill:#39ff90; stroke-width:.45; }
+      .windim { fill:#2cc770; stroke-width:.45; }
+      .door { fill:#160e1f; stroke-width:.5; }
+      .ground { fill:#160d2a; }
+      .lot { fill:#21133a; stroke-width:.5;  }
+      .road { fill:#0a0616; stroke:none; }
+      .sidel { fill:#120a22; }
+      .sider { fill:#080412; }
+      .grass { fill:#0f3a3a; stroke-width:.5; }
+      .water { fill:#04203a; stroke-width:.5; }
+      .tree { fill:#00efff; stroke-width:.6; }
+      .tree2 { fill:#ff37d7; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#ff37d7; stroke-width:.8; stroke-dasharray:3 3; filter:url(#glow); }
+      .rim { stroke:#ff37d7; stroke-width:.8; filter:url(#glow); }
+      .trunk { stroke:#4a2a6a; stroke-width:1.2; }
+      .leg { stroke:#00bfcc; stroke-width:1.4; }
+      .fence { stroke:#00efff; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#0b0618; stroke-width:.8; }
+      .trimline { stroke:#00efff; stroke-width:.9; fill:none; }
+      .accent { stroke:#ff37d7; stroke-width:1; fill:none; filter:url(#glow); }
+      .crane { fill:#00efff; stroke-width:.5; }
+      .craneshade { fill:#00a7b2; stroke-width:.5; }
+      .accentfill { fill:#ff37d7; stroke-width:.4; filter:url(#glow); }
+      .brick { stroke:#0d0718; stroke-width:.6; }
+      .hi { stroke:#00efff; stroke-width:.7; fill:none; }
+      .winc { fill:#00efff; stroke-width:.4; filter:url(#glow); }
+      .wine { fill:#ff37d7; stroke-width:.4; filter:url(#glow); }
+      .windark { fill:#130d1b; stroke-width:.4; }
+      .neon { stroke:#ff37d7; stroke-width:.9; fill:none; filter:url(#glow); }
+      .neon2 { stroke:#00efff; stroke-width:.9; fill:none; filter:url(#glow); }
+      .holo { fill:#00efff; fill-opacity:.45; stroke:#00efff; stroke-width:.5; filter:url(#glow); }
+      .glass { fill:#00efff; fill-opacity:.13; stroke:#00efff; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#00efff; stroke-width:1.3; fill:none; }
+      .fire { stroke:#00838c; stroke-width:.55; fill:none; }
+      .plank { stroke:#1d1329; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#231543; stroke-width:.5; }
+      .sil { fill:#1c1034; stroke:#0f091d; stroke-width:.5; }
+      .silside { fill:#150c28; stroke:#0f091d; stroke-width:.5; }
+      .siltop { fill:#21143f; stroke:#0f091d; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#00efff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#080512; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="wall" points="14.00,75.00 30.00,83.00 30.00,39.00 14.00,31.00"/>
+  <polygon class="shade" points="46.00,75.00 30.00,83.00 30.00,39.00 46.00,31.00"/>
+  <polygon class="roof" points="30.00,23.00 46.00,31.00 30.00,39.00 14.00,31.00"/>
+  <polygon class="x" points="14.96,72.28 16.24,72.92 16.24,71.52 14.96,70.88" style="fill:#39ff90;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="14.96,68.28 16.24,68.92 16.24,67.52 14.96,66.88" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="14.96,60.28 16.24,60.92 16.24,59.52 14.96,58.88" style="fill:#00efff;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="14.96,52.28 16.24,52.92 16.24,51.52 14.96,50.88" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="14.96,44.28 16.24,44.92 16.24,43.52 14.96,42.88" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="18.16,73.88 19.44,74.52 19.44,73.12 18.16,72.48" style="fill:#39ff90;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="18.16,69.88 19.44,70.52 19.44,69.12 18.16,68.48" style="fill:#00efff;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="18.16,61.88 19.44,62.52 19.44,61.12 18.16,60.48" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="18.16,41.88 19.44,42.52 19.44,41.12 18.16,40.48" style="fill:#00efff;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="21.36,67.48 22.64,68.12 22.64,66.72 21.36,66.08" style="fill:#39ff90;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="21.36,63.48 22.64,64.12 22.64,62.72 21.36,62.08" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="21.36,55.48 22.64,56.12 22.64,54.72 21.36,54.08" style="fill:#39ff90;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="21.36,51.48 22.64,52.12 22.64,50.72 21.36,50.08" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="21.36,47.48 22.64,48.12 22.64,46.72 21.36,46.08" style="fill:#39ff90;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="24.56,73.08 25.84,73.72 25.84,72.32 24.56,71.68" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="24.56,65.08 25.84,65.72 25.84,64.32 24.56,63.68" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="24.56,61.08 25.84,61.72 25.84,60.32 24.56,59.68" style="fill:#00efff;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="27.76,78.68 29.04,79.32 29.04,77.92 27.76,77.28" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="27.76,70.68 29.04,71.32 29.04,69.92 27.76,69.28" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="27.76,66.68 29.04,67.32 29.04,65.92 27.76,65.28" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="27.76,62.68 29.04,63.32 29.04,61.92 27.76,61.28" style="fill:#00efff;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="27.76,50.68 29.04,51.32 29.04,49.92 27.76,49.28" style="fill:#ff37d7;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="27.76,42.68 29.04,43.32 29.04,41.92 27.76,41.28" style="fill:#39ff90;fill-opacity:0.9;stroke:none"/>
+  <polygon class="x" points="45.04,64.28 43.76,64.92 43.76,63.52 45.04,62.88" style="fill:#39ff90;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="45.04,56.28 43.76,56.92 43.76,55.52 45.04,54.88" style="fill:#00efff;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="45.04,36.28 43.76,36.92 43.76,35.52 45.04,34.88" style="fill:#ff37d7;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="41.84,61.88 40.56,62.52 40.56,61.12 41.84,60.48" style="fill:#ff37d7;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="41.84,57.88 40.56,58.52 40.56,57.12 41.84,56.48" style="fill:#39ff90;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="38.64,47.48 37.36,48.12 37.36,46.72 38.64,46.08" style="fill:#39ff90;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="35.44,73.08 34.16,73.72 34.16,72.32 35.44,71.68" style="fill:#39ff90;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="35.44,69.08 34.16,69.72 34.16,68.32 35.44,67.68" style="fill:#ff37d7;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="35.44,57.08 34.16,57.72 34.16,56.32 35.44,55.68" style="fill:#ff37d7;fill-opacity:0.7;stroke:none"/>
+  <polygon class="x" points="35.44,53.08 34.16,53.72 34.16,52.32 35.44,51.68" style="fill:#39ff90;fill-opacity:0.7;stroke:none"/>
+  <path class="neon" d="M14.00 31.00L30.00 39.00L46.00 31.00" style="fill:none"/>
+  <line class="neon2" x1="14.00" y1="74.40" x2="30.00" y2="82.40"/>
+  <polygon class="winc" points="15.80,72.90 17.80,73.90 17.80,61.90 15.80,60.90"/>
+  <line class="windark" x1="16.20" y1="71.10" x2="17.40" y2="71.70"/>
+  <line class="windark" x1="16.20" y1="68.10" x2="17.40" y2="68.70"/>
+  <line class="windark" x1="16.20" y1="65.10" x2="17.40" y2="65.70"/>
+  <polygon class="holo" points="43.50,39.25 36.50,42.75 36.50,37.75 43.50,34.25"/>
+  <line class="edge" x1="30.00" y1="31.00" x2="30.00" y2="20.00"/>
+  <circle class="wine" cx="30.0" cy="20.0" r="1.1"/>
+</svg>

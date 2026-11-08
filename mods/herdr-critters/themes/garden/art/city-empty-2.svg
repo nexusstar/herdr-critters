@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="geometricPrecision">
+    
+    <style>
+      polygon, path, ellipse { stroke:#624936; stroke-width:0.9; stroke-linejoin:round; }
+      .wall { fill:#b8483a; }
+      .shade { fill:#7d3127; }
+      .roof { fill:#5f5a55; }
+      .roofshade { fill:#44413d; }
+      .metal { fill:#c89c69; }
+      .metalshade { fill:#876947; }
+      .win { fill:#f8f2d8; stroke-width:.45; }
+      .windim { fill:#c1bda8; stroke-width:.45; }
+      .door { fill:#53201a; stroke-width:.5; }
+      .ground { fill:#b9d58e; }
+      .lot { fill:#d8e8b0; stroke-width:.5; stroke-dasharray:1.4 1.2; }
+      .road { fill:#e8d3a8; stroke:none; }
+      .sidel { fill:#8a6a48; }
+      .sider { fill:#6e5236; }
+      .grass { fill:#8fbf6a; stroke-width:.5; }
+      .water { fill:#8fc8e0; stroke-width:.5; }
+      .tree { fill:#7fb85a; stroke-width:.6; }
+      .tree2 { fill:#f2a0c0; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#fff0c9; stroke-width:.8; stroke-dasharray:3 3; }
+      .rim { stroke:#ffffff; stroke-width:.8; }
+      .trunk { stroke:#7a5a3a; stroke-width:1.2; }
+      .leg { stroke:#ccc0a1; stroke-width:1.4; }
+      .fence { stroke:#fff0c9; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#624936; stroke-width:.8; }
+      .trimline { stroke:#fff0c9; stroke-width:.9; fill:none; }
+      .accent { stroke:#e07aa5; stroke-width:1; fill:none; }
+      .crane { fill:#fff0c9; stroke-width:.5; }
+      .craneshade { fill:#b2a88d; stroke-width:.5; }
+      .accentfill { fill:#e07aa5; stroke-width:.4; }
+      .brick { stroke:#614a32; stroke-width:.6; }
+      .hi { stroke:#ffffff; stroke-width:.7; fill:none; }
+      .winc { fill:#fff0c9; stroke-width:.4; }
+      .wine { fill:#e07aa5; stroke-width:.4; }
+      .windark { fill:#4a1d17; stroke-width:.4; }
+      .neon { stroke:#e07aa5; stroke-width:.9; fill:none; }
+      .neon2 { stroke:#fff0c9; stroke-width:.9; fill:none; }
+      .holo { fill:#fff0c9; fill-opacity:.45; stroke:#fff0c9; stroke-width:.5; }
+      .glass { fill:#ffffff; fill-opacity:.13; stroke:#fff0c9; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#fff0c9; stroke-width:1.3; fill:none; }
+      .fire { stroke:#8c846f; stroke-width:.55; fill:none; }
+      .plank { stroke:#6e2b23; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#ffffe3; stroke-width:.5; }
+      .sil { fill:#e7ffb2; stroke:#829563; stroke-width:.5; }
+      .silside { fill:#b0ca87; stroke:#829563; stroke-width:.5; }
+      .siltop { fill:#ffffd5; stroke:#829563; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#ffffff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#bead8a; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="soil" points="30.00,63.00 54.00,75.00 30.00,87.00 6.00,75.00"/>
+  <path class="vine" d="M28.0 65.0L50.0 76.0"/>
+  <ellipse class="pumpkin" cx="32.4" cy="65.7" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="32.39" y1="64.20" x2="32.99" y2="63.00"/>
+  <ellipse class="pumpkin" cx="40.7" cy="69.9" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="40.73" y1="68.36" x2="41.33" y2="67.16"/>
+  <ellipse class="pumpkin" cx="47.2" cy="73.1" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="47.19" y1="71.59" x2="47.79" y2="70.39"/>
+  <path class="vine" d="M22.0 68.0L44.0 79.0"/>
+  <ellipse class="pumpkin" cx="24.5" cy="67.7" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="24.46" y1="66.23" x2="25.06" y2="65.03"/>
+  <ellipse class="pumpkin" cx="32.6" cy="71.8" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="32.56" y1="70.28" x2="33.16" y2="69.08"/>
+  <ellipse class="pumpkin" cx="41.6" cy="76.3" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="41.57" y1="74.79" x2="42.17" y2="73.59"/>
+  <path class="vine" d="M16.0 71.0L38.0 82.0"/>
+  <ellipse class="pumpkin" cx="18.5" cy="70.7" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="18.48" y1="69.24" x2="19.08" y2="68.04"/>
+  <ellipse class="pumpkin" cx="27.6" cy="75.3" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="27.64" y1="73.82" x2="28.24" y2="72.62"/>
+  <ellipse class="pumpkin" cx="34.1" cy="78.6" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="34.11" y1="77.06" x2="34.71" y2="75.86"/>
+  <path class="vine" d="M10.0 74.0L32.0 85.0"/>
+  <ellipse class="pumpkin" cx="12.5" cy="73.8" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="12.51" y1="72.26" x2="13.11" y2="71.06"/>
+  <ellipse class="pumpkin" cx="22.0" cy="78.5" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="21.99" y1="77.00" x2="22.59" y2="75.80"/>
+  <ellipse class="pumpkin" cx="28.4" cy="81.7" rx="2.3" ry="1.7"/>
+  <line class="vine" x1="28.37" y1="80.19" x2="28.97" y2="78.99"/>
+</svg>

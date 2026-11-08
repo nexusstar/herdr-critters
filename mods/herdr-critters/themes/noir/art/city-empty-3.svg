@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="crispEdges">
+    
+    <style>
+      polygon, path, ellipse { stroke:#1c1c20; stroke-width:0.8; stroke-linejoin:round; }
+      .wall { fill:#aaa69b; }
+      .shade { fill:#747169; }
+      .roof { fill:#5c5d62; }
+      .roofshade { fill:#424347; }
+      .metal { fill:#848179; }
+      .metalshade { fill:#595752; }
+      .win { fill:#e4cb91; stroke-width:.45; }
+      .windim { fill:#b29e71; stroke-width:.45; }
+      .door { fill:#4c4b46; stroke-width:.5; }
+      .ground { fill:#3a3a3f; }
+      .lot { fill:#4a4a50; stroke-width:.5;  }
+      .road { fill:#222226; stroke:none; }
+      .sidel { fill:#2a2a2e; }
+      .sider { fill:#18181b; }
+      .grass { fill:#34383a; stroke-width:.5; }
+      .water { fill:#1c1f26; stroke-width:.5; }
+      .tree { fill:#2a2c2e; stroke-width:.6; }
+      .tree2 { fill:#1f2123; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#d7cdb5; stroke-width:.8; stroke-dasharray:3 3; }
+      .rim { stroke:#6a6f7a; stroke-width:.8; }
+      .trunk { stroke:#111114; stroke-width:1.2; }
+      .leg { stroke:#aca491; stroke-width:1.4; }
+      .fence { stroke:#d7cdb5; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#1c1c20; stroke-width:.8; }
+      .trimline { stroke:#d7cdb5; stroke-width:.9; fill:none; }
+      .accent { stroke:#bb303b; stroke-width:1; fill:none; }
+      .crane { fill:#d7cdb5; stroke-width:.5; }
+      .craneshade { fill:#96907f; stroke-width:.5; }
+      .accentfill { fill:#bb303b; stroke-width:.4; }
+      .brick { stroke:#1d1d20; stroke-width:.6; }
+      .hi { stroke:#6a6f7a; stroke-width:.7; fill:none; }
+      .winc { fill:#d7cdb5; stroke-width:.4; }
+      .wine { fill:#bb303b; stroke-width:.4; }
+      .windark { fill:#44423e; stroke-width:.4; }
+      .neon { stroke:#bb303b; stroke-width:.9; fill:none; }
+      .neon2 { stroke:#d7cdb5; stroke-width:.9; fill:none; }
+      .holo { fill:#d7cdb5; fill-opacity:.45; stroke:#d7cdb5; stroke-width:.5; }
+      .glass { fill:#6a6f7a; fill-opacity:.13; stroke:#d7cdb5; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#d7cdb5; stroke-width:1.3; fill:none; }
+      .fire { stroke:#767164; stroke-width:.55; fill:none; }
+      .plank { stroke:#66645d; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#5d5d65; stroke-width:.5; }
+      .sil { fill:#28282d; stroke:#29292c; stroke-width:.5; }
+      .silside { fill:#1e1e22; stroke:#29292c; stroke-width:.5; }
+      .siltop { fill:#323238; stroke:#29292c; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#6a6f7a; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#1c1c1f; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="wall" points="27.00,70.50 35.00,74.50 35.00,44.50 27.00,40.50"/>
+  <polygon class="shade" points="43.00,70.50 35.00,74.50 35.00,44.50 43.00,40.50"/>
+  <polygon class="roof" points="35.00,36.50 43.00,40.50 35.00,44.50 27.00,40.50"/>
+  <polygon class="win" points="29.00,51.25 33.00,53.25 33.00,48.75 29.00,46.75"/>
+  <polygon class="roof" points="27.00,40.50 35.00,44.50 35.00,22.50"/>
+  <polygon class="roofshade" points="43.00,40.50 35.00,44.50 35.00,22.50"/>
+  <polygon class="wall" points="9.00,75.50 29.00,85.50 29.00,70.50 9.00,60.50"/>
+  <polygon class="shade" points="43.00,78.50 29.00,85.50 29.00,70.50 43.00,63.50"/>
+  <polygon class="roof" points="23.00,53.50 43.00,63.50 29.00,70.50 9.00,60.50"/>
+  <polygon class="roofshade" points="23.00,53.50 43.00,63.50 36.00,59.00 16.00,49.00"/>
+  <polygon class="shade" points="43.00,63.50 29.00,70.50 36.00,59.00"/>
+  <polygon class="roof" points="9.00,60.50 29.00,70.50 36.00,59.00 16.00,49.00"/>
+  <circle class="win" cx="19.0" cy="72.5" r="2.6"/>
+  <circle class="windim" cx="19.0" cy="72.5" r="1.1"/>
+  <polygon class="door" points="24.00,83.00 27.00,84.50 27.00,78.50 24.00,77.00"/>
+</svg>

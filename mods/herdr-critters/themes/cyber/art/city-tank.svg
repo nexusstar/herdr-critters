@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="geometricPrecision">
+    <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1" result="b"/><feFlood flood-color="#ff37d7" flood-opacity=".8"/>
+      <feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter></defs>
+    <style>
+      polygon, path, ellipse { stroke:#0b0618; stroke-width:0.8; stroke-linejoin:round; }
+      .wall { fill:#3a2050; }
+      .shade { fill:#271636; }
+      .roof { fill:#5a2060; }
+      .roofshade { fill:#411745; }
+      .metal { fill:#1c213b; }
+      .metalshade { fill:#131628; }
+      .win { fill:#39ff90; stroke-width:.45; }
+      .windim { fill:#2cc770; stroke-width:.45; }
+      .door { fill:#1a0e24; stroke-width:.5; }
+      .ground { fill:#160d2a; }
+      .lot { fill:#21133a; stroke-width:.5;  }
+      .road { fill:#0a0616; stroke:none; }
+      .sidel { fill:#120a22; }
+      .sider { fill:#080412; }
+      .grass { fill:#0f3a3a; stroke-width:.5; }
+      .water { fill:#04203a; stroke-width:.5; }
+      .tree { fill:#00efff; stroke-width:.6; }
+      .tree2 { fill:#ff37d7; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#ff37d7; stroke-width:.8; stroke-dasharray:3 3; filter:url(#glow); }
+      .rim { stroke:#ff37d7; stroke-width:.8; filter:url(#glow); }
+      .trunk { stroke:#4a2a6a; stroke-width:1.2; }
+      .leg { stroke:#00bfcc; stroke-width:1.4; }
+      .fence { stroke:#00efff; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#0b0618; stroke-width:.8; }
+      .trimline { stroke:#00efff; stroke-width:.9; fill:none; }
+      .accent { stroke:#ff37d7; stroke-width:1; fill:none; filter:url(#glow); }
+      .crane { fill:#00efff; stroke-width:.5; }
+      .craneshade { fill:#00a7b2; stroke-width:.5; }
+      .accentfill { fill:#ff37d7; stroke-width:.4; filter:url(#glow); }
+      .brick { stroke:#0d0718; stroke-width:.6; }
+      .hi { stroke:#00efff; stroke-width:.7; fill:none; }
+      .winc { fill:#00efff; stroke-width:.4; filter:url(#glow); }
+      .wine { fill:#ff37d7; stroke-width:.4; filter:url(#glow); }
+      .windark { fill:#170d20; stroke-width:.4; }
+      .neon { stroke:#ff37d7; stroke-width:.9; fill:none; filter:url(#glow); }
+      .neon2 { stroke:#00efff; stroke-width:.9; fill:none; filter:url(#glow); }
+      .holo { fill:#00efff; fill-opacity:.45; stroke:#00efff; stroke-width:.5; filter:url(#glow); }
+      .glass { fill:#00efff; fill-opacity:.13; stroke:#00efff; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#00efff; stroke-width:1.3; fill:none; }
+      .fire { stroke:#00838c; stroke-width:.55; fill:none; }
+      .plank { stroke:#231330; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#231543; stroke-width:.5; }
+      .sil { fill:#1c1034; stroke:#0f091d; stroke-width:.5; }
+      .silside { fill:#150c28; stroke:#0f091d; stroke-width:.5; }
+      .siltop { fill:#21143f; stroke:#0f091d; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#00efff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#080512; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="wall" points="6.00,75.00 30.00,87.00 30.00,83.00 6.00,71.00"/>
+  <polygon class="shade" points="54.00,75.00 30.00,87.00 30.00,83.00 54.00,71.00"/>
+  <polygon class="roofshade" points="30.00,59.00 54.00,71.00 30.00,83.00 6.00,71.00"/>
+  <path class="wall" d="M31.80 50.50L31.80 70.50A8.20 4.10 0 0 0 48.20 70.50L48.20 50.50Z"/>
+  <path class="shade" d="M40.00 54.60L40.00 74.60A8.20 4.10 0 0 0 48.20 70.50L48.20 50.50Z" style="stroke:none"/>
+  <path class="wall" d="M31.80 50.50L31.80 70.50A8.20 4.10 0 0 0 48.20 70.50L48.20 50.50" style="fill:none"/>
+  <path class="trimline" d="M31.80 60.50A8.20 4.10 0 0 0 48.20 60.50"/>
+  <path class="roof" d="M31.80 50.50A8.20 9.10 0 0 1 48.20 50.50A8.20 4.10 0 0 1 31.80 50.50Z"/>
+  <path class="accent" d="M30.00 66.00L30.00 71.00" style="fill:none"/>
+  <path class="accent" d="M30.00 63.50L35.00 66.00" style="fill:none"/>
+  <path class="wall" d="M12.93 56.50L12.93 70.50A7.07 3.54 0 0 0 27.07 70.50L27.07 56.50Z"/>
+  <path class="shade" d="M20.00 60.04L20.00 74.04A7.07 3.54 0 0 0 27.07 70.50L27.07 56.50Z" style="stroke:none"/>
+  <path class="wall" d="M12.93 56.50L12.93 70.50A7.07 3.54 0 0 0 27.07 70.50L27.07 56.50" style="fill:none"/>
+  <path class="trimline" d="M12.93 63.50A7.07 3.54 0 0 0 27.07 63.50"/>
+  <path class="roof" d="M12.93 56.50A7.07 7.54 0 0 1 27.07 56.50A7.07 3.54 0 0 1 12.93 56.50Z"/>
+  <polygon class="winc" points="7.80,72.90 9.80,73.90 9.80,73.90 7.80,72.90"/>
+  <polygon class="holo" points="51.50,79.25 44.50,82.75 44.50,77.75 51.50,74.25"/>
+  <line class="edge" x1="30.00" y1="71.00" x2="30.00" y2="60.00"/>
+  <circle class="wine" cx="30.0" cy="60.0" r="1.1"/>
+</svg>

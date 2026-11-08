@@ -6,6 +6,7 @@ import { v_flex, h_flex } from "gpui-base";
 import { agents, terminals, spaces, machines, run, setAgentOrder, layout, shared, setShared, theme, openOverlay, closeOverlay, props } from "herdr";
 import { webcrypto } from "crypto";
 import { THEMES, themeById } from "./themes/index.js";
+import CITY from "./city.js";
 
 const THEME_KEY = "herdr-critters.theme";
 const activeTheme = () => themeById(shared(THEME_KEY));
@@ -68,6 +69,9 @@ const SPACE_MARK_COLORS = {
   ansi1: "#d9649a",
 };
 const isSet = (key, id) => Boolean(shared(key)?.[id]);
+
+// Which empty-lot look each lot gets, so neighbours differ.
+const EMPTY_ORDER = [0, 2, 3, 1, 3, 0, 1, 2];
 function spaceBuildingHash(id) {
   let hash = 2166136261;
   for (const char of String(id)) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
@@ -95,8 +99,7 @@ export default class RetroAgents extends View {
     this.hovered = null;
     this.look = null;
     this.picked = {};
-    this.pressedSpace = null;
-    this.overSpace = null;
+    this.hoverSpace = null;
   }
 
   // The status entry for an agent's word; an unknown word reads as idle.
@@ -164,12 +167,7 @@ export default class RetroAgents extends View {
       .bg(C.badgeBg)
       .border(1)
       .border_color(st === "idle" ? C.idleEdge : this.statusOf(st).color);
-    const mark = {
-      idle: () => this.pixel(div(), 9, C.idleMark).frames(["z", "z", "Z", "Z"], 450),
-      working: () => this.pixel(div(), 9, STATUS.working.color).frames(["▘", "▝", "▗", "▖"], 140),
-      blocked: () => this.pixel(div(), 10, STATUS.blocked.color).child("!").loop("opacity", { from: 0.25, to: 1, period: 700 }),
-      done: () => div().text_size(10).font_bold().text_color(STATUS.done.color).child("✓"),
-    }[st] ?? (() => div());
+    const mark = () => this.statusMark(st);
     return div()
       .relative()
       .w(w)
@@ -181,6 +179,17 @@ export default class RetroAgents extends View {
       .child(image(`${art}/scene-${STATUS[st] ? st : "idle"}.${ext}`).absolute().left(0).top(0).w(w - 4).h(h - 4))
       .child(st === "working" ? sprite.loop("top", { from: top, to: top - 3, period: 520 }) : sprite)
       .child(badge.child(mark()));
+  }
+
+  // The corner-badge mark for a status: z, a spinner, a pulsing !, a check.
+  statusMark(st) {
+    const { colors: C, status: STATUS } = this.look;
+    return ({
+      idle: () => this.pixel(div(), 9, C.idleMark).frames(["z", "z", "Z", "Z"], 450),
+      working: () => this.pixel(div(), 9, STATUS.working.color).frames(["▘", "▝", "▗", "▖"], 140),
+      blocked: () => this.pixel(div(), 10, STATUS.blocked.color).child("!").loop("opacity", { from: 0.25, to: 1, period: 700 }),
+      done: () => div().text_size(10).font_bold().text_color(STATUS.done.color).child("✓"),
+    }[st] ?? (() => div()))();
   }
 
   // A small icon button on a card; a click does `act` and not the card's own click.
@@ -504,39 +513,6 @@ export default class RetroAgents extends View {
         .when(active, (el) => el.loop("opacity", { from: 0.75, to: 1, period: 1800 })));
   }
 
-  spaceStage(space, scene, color, buildingAssignments) {
-    const width = 74;
-    const height = 62;
-    const size = 48;
-    const left = Math.round((width - 4 - size) / 2);
-    const top = Math.round((height - 4 - size) / 2);
-    const building = this.spaceBuilding(space, color, buildingAssignments, size, space.active)
-      .absolute()
-      .left(left)
-      .top(top);
-    let background = image(`${this.look.art}/scene-idle.${artExt(this.look)}`)
-      .absolute()
-      .left(0)
-      .top(0)
-      .w(width - 4)
-      .h(height - 4);
-    if (space.active) background = background.loop("opacity", { from: 0.9, to: 1, period: 4200 });
-
-    const glints = space.active
-      ? [[7, 10, 2, 1700], [61, 13, 3, 2400], [8, 36, 2, 2100], [61, 42, 2, 2800]]
-        .map(([x, y, size, period]) => div().absolute().left(x).top(y).size(size).rounded_full().bg(color)
-          .loop("opacity", { from: 0.18, to: 0.85, period }))
-      : [];
-
-    return div().relative().w(width).h(height).flex_none().overflow_hidden()
-      .bg(scene.card)
-      .border(2)
-      .border_color(scene.card)
-      .child(background)
-      .children(glints)
-      .child(building);
-  }
-
   spaceStatusBox(space) {
     const C = this.look.colors;
     const status = space.status ? this.statusOf(space.status) : null;
@@ -594,71 +570,124 @@ export default class RetroAgents extends View {
       ));
   }
 
-  spaceCard(space, appTheme, agentCount, spaceIndex, spacesList, scene, buildingAssignments) {
+  // How much to scale the city so it fills the sidebar: 1 at 240 px.
+  cityScale() {
+    const px = find(layout(), "sidebar")?.size?.px ?? 268;
+    return Math.max(0.6, Math.min(1.6, (px - 28) / CITY.canvas.w));
+  }
+
+  // The Spaces section: one isometric city. Each of the first eight spaces is a
+  // building on a lot, in space order, back to front.
+  city(spacesList, appTheme, buildingAssignments) {
+    const { art, colors: C, status: STATUS } = this.look;
+    const k = this.cityScale();
+    const px = (v) => Math.round(v * k);
+    const { canvas, building: BLD, lots, types } = CITY;
+    const shown = spacesList.slice(0, lots.length);
+    const stage = div().relative().w(px(canvas.w)).h(px(canvas.h)).flex_none()
+      .child(image(`${art}/city-plate.svg`).absolute().left(0).top(0).w(px(canvas.w)).h(px(canvas.h)));
+    const typeOf = (space) => buildingAssignments[String(space.id)]
+      ?? SPACE_BUILDINGS[spaceBuildingHash(space.id) % SPACE_BUILDINGS.length];
+
+    // Buildings, back to front.
+    lots.forEach((lot, i) => {
+      const space = shown[i];
+      const art_ = space ? typeOf(space) : `empty-${EMPTY_ORDER[i] % CITY.empties}`;
+      stage.child(image(`${art}/city-${art_}.svg`).absolute()
+        .left(px(lot.x)).top(px(lot.y)).w(px(BLD.w)).h(px(BLD.h)));
+    });
+
+    // Flags, status badges and the active arrow sit above every roof.
+    const overlays = [];
+    const hits = [];
+    lots.forEach((lot, i) => {
+      const space = shown[i];
+      if (!space) {
+        hits.push(div().id(`city-empty-${i}`).absolute()
+          .left(px(lot.x + 14)).top(px(lot.y + BLD.top - 4)).w(px(BLD.w - 28)).h(px(30))
+          .cursor_pointer().tooltip("New space")
+          .on_click((_e, cx) => { cx.stop_propagation(); run("space.new"); }));
+        return;
+      }
+      const meta = types[typeOf(space)];
+      const color = this.spaceColor(space, appTheme);
+      const fx = lot.x + meta.flag[0];
+      const fy = lot.y + meta.flag[1];
+      overlays.push(div().absolute().left(px(fx)).top(px(fy) - 10).w(1).h(10).bg(C.text));
+      let flag = div().absolute().left(px(fx) + 1).top(px(fy) - 10).w(7).h(5).bg(color);
+      if (space.active) flag = flag.loop("opacity", { from: 0.6, to: 1, period: 1200 });
+      overlays.push(flag);
+      // Status, quietly: smoke while working, a pulsing red light when blocked,
+      // a steady green light when done. Idle shows nothing.
+      const st = space.status;
+      if (st === "working") {
+        const [sx, sy] = [px(lot.x + meta.smoke[0]), px(lot.y + meta.smoke[1])];
+        // Three puffs drifting up and a little to the right, each on its own beat.
+        [[0, -1, 3, 2300], [2, -6, 4, 2900], [5, -12, 5, 3500]].forEach(([dx, dy, size, period], n) => {
+          const top = sy + dy - size;
+          overlays.push(div().id(`city-smoke-${space.id}-${n}`).absolute().left(sx + dx - size / 2).top(top)
+            .size(size).rounded_full().bg(C.text)
+            .loop("top", { from: top, to: top - 3, period })
+            .loop("opacity", { from: 0.12, to: 0.4, period: period * 0.8 }));
+        });
+      } else if (st === "blocked" || st === "done") {
+        let light = div().absolute().left(px(fx) - 1).top(px(fy) - 13).size(3).rounded_full().bg(STATUS[st].color);
+        if (st === "blocked") light = light.loop("opacity", { from: 0.2, to: 1, period: 900 });
+        overlays.push(light);
+      }
+      if (space.active) {
+        // Above the roof, and above the smoke when there is some.
+        const roof = px(lot.y + meta.top);
+        const top = st === "working" ? Math.min(roof, px(lot.y + meta.smoke[1]) - 20) : roof;
+        overlays.push(div().id(`city-arrow-${space.id}`).absolute().left(px(lot.x + BLD.w / 2) - 6).top(top - 16).w(12).h(12)
+          .loop("top", { from: top - 18, to: top - 13, period: 900 })
+          .text_color(C.focus).child(svg("mods/workspace-chrome/chevron-down.svg").size(12)));
+      }
+      hits.push(div().id(`city-bld-${space.id}`).absolute()
+        .left(px(lot.x + 8)).top(px(lot.y + meta.top)).w(px(BLD.w - 16)).h(px(BLD.h - 4 - meta.top))
+        .cursor_pointer()
+        .on_hover((on, cx) => {
+          if (on) this.hoverSpace = space.id;
+          else if (this.hoverSpace === space.id) this.hoverSpace = null;
+          cx.notify();
+        })
+        .on_click(() => run("space.select", { id: space.id }))
+        .on_mouse_down("right", (_e, cx) => this.openSpaceMenu(space, cx)));
+    });
+
+    return stage.children(overlays).children(hits);
+  }
+
+  // Under the city: the hovered space, else the active one, with its details.
+  cityCaption(space, appTheme, agentCount) {
     const C = this.look.colors;
-    const color = this.spaceColor(space, appTheme);
-    const activeBg = /^#[0-9a-f]{6}$/i.test(color) ? `${color}24` : C.divider;
+    if (!space) return div();
     const folder = (space.folder ?? "").split(/[\\/]+/).filter(Boolean).at(-1) ?? "";
-    const folderLabel = folder && folder.toLowerCase() !== space.name.toLowerCase() ? folder : "";
-    const location = space.branch || folderLabel;
-    const machineIcon = space.machine ? "network" : "laptop";
-    const machineTooltip = space.machine ? `Remote machine: ${space.machine}` : "This machine";
+    const location = space.branch || (folder && folder.toLowerCase() !== space.name.toLowerCase() ? folder : "");
     const tabCount = space.tabs.length;
     const counts = `${tabCount} ${tabCount === 1 ? "tab" : "tabs"} · ${agentCount} ${agentCount === 1 ? "agent" : "agents"}`;
-    const fromIndex = this.pressedSpace === null ? -1 : spacesList.findIndex((item) => item.id === this.pressedSpace);
+    return v_flex().flex_none().gap(3).px(4)
+      .child(h_flex().gap(6).items_center().min_w(0)
+        .child(div().size(8).flex_none().bg(this.spaceColor(space, appTheme)))
+        .child(div().flex_1().min_w(0).font_family(this.look.fonts.mono).text_size(18).line_height("17px").text_color(C.text).truncate().child(space.name))
+        .child(this.spaceStatusBox(space)))
+      .child(h_flex().gap(4).items_center().min_w(0)
+        .child(svg(`mods/herdr-critters/icons/${space.machine ? "network" : "laptop"}.svg`).size(11).flex_none().text_color(C.sub))
+        .child(div().flex_1().min_w(0).text_size(11).text_color(C.sub).truncate().child([location, counts].filter(Boolean).join(" · "))));
+  }
 
-    return h_flex()
-      .id(`space-card-${space.id}`)
-      .relative()
-      .flex_none()
-      .p(6)
-      .gap(10)
-      .items_center()
-      .bg(space.active ? activeBg : scene.card)
-      .border(2)
-      .border_color(space.active ? color : scene.edge)
-      .cursor_pointer()
-      .hover((el) => el.bg(space.active ? activeBg : scene.edge))
-      .when(this.pressedSpace === space.id && this.overSpace !== space.id, (el) => el.opacity(0.5))
-      .when(this.pressedSpace !== null && this.overSpace === space.id && this.pressedSpace !== space.id, (el) => el.child(
-        div().absolute().left(0).right(0).h(2).bg(appTheme.accent)
-          .when(fromIndex < spaceIndex, (line) => line.bottom(0))
-          .when(fromIndex > spaceIndex, (line) => line.top(0)),
-      ))
-      .on_mouse_down("left", () => { this.pressedSpace = space.id; this.overSpace = space.id; })
-      .on_mouse_move((_e, cx) => {
-        const source = spacesList.find((item) => item.id === this.pressedSpace);
-        const over = source && (source.machine ?? null) === (space.machine ?? null) ? space.id : null;
-        if (this.pressedSpace !== null && this.overSpace !== over) {
-          this.overSpace = over;
-          cx.notify();
-        }
-      })
-      .on_mouse_up("left", (_e, cx) => {
-        const from = this.pressedSpace;
-        const over = this.overSpace;
-        this.pressedSpace = null;
-        this.overSpace = null;
-        if (from !== null && over === space.id && from !== space.id) {
-          const index = spacesList.findIndex((item) => item.id === space.id);
-          if (index !== -1) run("space.move", { id: from, index: index + 1 });
-        } else if (from === space.id) {
-          run("space.select", { id: space.id });
-        }
-        cx.notify();
-      })
+  // Spaces past the city's eight lots, one line each.
+  overflowRow(space, appTheme, buildingAssignments) {
+    const C = this.look.colors;
+    const color = this.spaceColor(space, appTheme);
+    return h_flex().id(`space-row-${space.id}`).flex_none().h(24).px(4).gap(6).items_center()
+      .border(1).border_color(space.active ? color : C.btnEdge)
+      .cursor_pointer().hover((el) => el.bg(C.divider))
+      .on_click(() => run("space.select", { id: space.id }))
       .on_mouse_down("right", (_e, cx) => this.openSpaceMenu(space, cx))
-      .child(this.spaceStage(space, scene, color, buildingAssignments))
-      .child(v_flex().flex_1().min_w(0).gap(4).justify_center()
-        .child(h_flex().min_w(0).gap(4).items_center()
-          .child(div().flex_1().min_w(0).font_family(this.look.fonts.mono).text_size(18).line_height("17px").text_color(C.text).truncate().child(space.name))
-          .child(this.spaceStatusBox(space)))
-        .child(h_flex().flex_1().min_w(0).gap(4).items_center()
-          .child(div().size(14).flex_none().flex().items_center().justify_center().text_color(C.sub)
-            .tooltip(machineTooltip)
-            .child(svg(`mods/herdr-critters/icons/${machineIcon}.svg`).size(12)))
-          .child(div().flex_1().min_w(0).text_size(11.5).line_height("13px").text_color(C.sub).truncate().child(location)))
-        .child(div().text_size(10).line_height("12px").text_color(C.sub).child(counts)));
+      .child(this.spaceBuilding(space, color, buildingAssignments, 16, space.active))
+      .child(div().flex_1().min_w(0).font_family(this.look.fonts.mono).text_size(16).line_height("15px").text_color(C.text).truncate().child(space.name))
+      .child(this.spaceStatusBox(space));
   }
 
   render() {
@@ -676,11 +705,6 @@ export default class RetroAgents extends View {
       const m = machineOf(a);
       const id = m === null ? look.localScene : look.remoteScenes[Math.max(0, order.indexOf(m) - 1) % look.remoteScenes.length];
       return { id, ...look.scenes[id] };
-    };
-    const spaceSceneOf = (space) => {
-      const machine = space.machine ?? null;
-      const id = machine === null ? look.localScene : look.remoteScenes[Math.max(0, order.indexOf(machine) - 1) % look.remoteScenes.length];
-      return look.scenes[id] ?? look.scenes[look.localScene];
     };
 
     // agents() comes in machine, space order, so neighbours make a group either way.
@@ -724,9 +748,14 @@ export default class RetroAgents extends View {
     });
 
     const spacesCollapsed = isSet(SPACES_COLLAPSED_KEY, "spaces");
+    const captioned = spacesList.find((space) => space.id === this.hoverSpace) ?? spacesList.find((space) => space.active);
+    const overflow = spacesList.slice(CITY.lots.length);
     const spaceContent = spacesList.length === 0
       ? v_flex().px(14).pt(4).child(this.pixel(div(), 11, C.machine).child("NO SPACES YET"))
-      : v_flex().gap(5).children(spacesList.map((space, index) => this.spaceCard(space, t, agentCounts.get(space.id) ?? 0, index, spacesList, spaceSceneOf(space), buildingAssignments)));
+      : v_flex().gap(6)
+        .child(h_flex().justify_center().child(this.city(spacesList, t, buildingAssignments)))
+        .child(this.cityCaption(captioned, t, agentCounts.get(captioned?.id) ?? 0))
+        .children(overflow.map((space) => this.overflowRow(space, t, buildingAssignments)));
     const spacesSection = v_flex().gap(4).children([
       this.spaceSectionHeader(spacesList.length, spacesCollapsed),
       ...(spacesCollapsed ? [] : [spaceContent]),
@@ -760,13 +789,6 @@ export default class RetroAgents extends View {
           .child(this.pixel(div(), 11, busy ? STATUS.working.color : C.head).flex_none().child(`${busy} ${STATUS.working.word}`)),
       )
       .child(v_flex().id("critters-list").flex_1().min_h(0).px(10).pb(10).gap(8).overflow_y_scrollbar()
-        .on_mouse_up("left", (_e, cx) => {
-          if (this.pressedSpace !== null) {
-            this.pressedSpace = null;
-            this.overSpace = null;
-            cx.notify();
-          }
-        })
         .children([spacesSection, agentsSection]));
   }
 }

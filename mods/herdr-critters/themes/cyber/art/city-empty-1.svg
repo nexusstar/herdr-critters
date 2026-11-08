@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="geometricPrecision">
+    <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1" result="b"/><feFlood flood-color="#ff37d7" flood-opacity=".8"/>
+      <feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter></defs>
+    <style>
+      polygon, path, ellipse { stroke:#0b0618; stroke-width:0.8; stroke-linejoin:round; }
+      .wall { fill:#302044; }
+      .shade { fill:#21162e; }
+      .roof { fill:#45235d; }
+      .roofshade { fill:#321943; }
+      .metal { fill:#211835; }
+      .metalshade { fill:#161024; }
+      .win { fill:#39ff90; stroke-width:.45; }
+      .windim { fill:#2cc770; stroke-width:.45; }
+      .door { fill:#160e1f; stroke-width:.5; }
+      .ground { fill:#160d2a; }
+      .lot { fill:#21133a; stroke-width:.5;  }
+      .road { fill:#0a0616; stroke:none; }
+      .sidel { fill:#120a22; }
+      .sider { fill:#080412; }
+      .grass { fill:#0f3a3a; stroke-width:.5; }
+      .water { fill:#04203a; stroke-width:.5; }
+      .tree { fill:#00efff; stroke-width:.6; }
+      .tree2 { fill:#ff37d7; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#ff37d7; stroke-width:.8; stroke-dasharray:3 3; filter:url(#glow); }
+      .rim { stroke:#ff37d7; stroke-width:.8; filter:url(#glow); }
+      .trunk { stroke:#4a2a6a; stroke-width:1.2; }
+      .leg { stroke:#00bfcc; stroke-width:1.4; }
+      .fence { stroke:#00efff; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#0b0618; stroke-width:.8; }
+      .trimline { stroke:#00efff; stroke-width:.9; fill:none; }
+      .accent { stroke:#ff37d7; stroke-width:1; fill:none; filter:url(#glow); }
+      .crane { fill:#00efff; stroke-width:.5; }
+      .craneshade { fill:#00a7b2; stroke-width:.5; }
+      .accentfill { fill:#ff37d7; stroke-width:.4; filter:url(#glow); }
+      .brick { stroke:#0d0718; stroke-width:.6; }
+      .hi { stroke:#00efff; stroke-width:.7; fill:none; }
+      .winc { fill:#00efff; stroke-width:.4; filter:url(#glow); }
+      .wine { fill:#ff37d7; stroke-width:.4; filter:url(#glow); }
+      .windark { fill:#130d1b; stroke-width:.4; }
+      .neon { stroke:#ff37d7; stroke-width:.9; fill:none; filter:url(#glow); }
+      .neon2 { stroke:#00efff; stroke-width:.9; fill:none; filter:url(#glow); }
+      .holo { fill:#00efff; fill-opacity:.45; stroke:#00efff; stroke-width:.5; filter:url(#glow); }
+      .glass { fill:#00efff; fill-opacity:.13; stroke:#00efff; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#00efff; stroke-width:1.3; fill:none; }
+      .fire { stroke:#00838c; stroke-width:.55; fill:none; }
+      .plank { stroke:#1d1329; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#231543; stroke-width:.5; }
+      .sil { fill:#1c1034; stroke:#0f091d; stroke-width:.5; }
+      .silside { fill:#150c28; stroke:#0f091d; stroke-width:.5; }
+      .siltop { fill:#21143f; stroke:#0f091d; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#00efff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#080512; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="fence" points="30.00,63.50 53.00,75.00 30.00,86.50 7.00,75.00"/>
+  <line class="trunk" x1="30.0" y1="67.0" x2="30.0" y2="63.5"/>
+  <ellipse class="tree" cx="30.0" cy="61.4" rx="3.6" ry="3.1"/>
+  <line class="trunk" x1="37.5" y1="69.2" x2="37.5" y2="66.8"/>
+  <ellipse class="tree" cx="37.5" cy="65.6" rx="2.5" ry="2.2"/>
+  <line class="trunk" x1="44.5" y1="74.8" x2="44.5" y2="71.2"/>
+  <path class="tree2" d="M40.9 72.2L44.5 64.8L48.1 72.2Z"/>
+  <line class="trunk" x1="15.5" y1="74.8" x2="15.5" y2="71.6"/>
+  <ellipse class="tree" cx="15.5" cy="68.6" rx="2.3" ry="4.0"/>
+  <line class="edge" x1="30.00" y1="79.00" x2="30.00" y2="70.00"/>
+  <rect class="crane" x="26.0" y="65.0" width="8" height="6" style="stroke:#0b0618"/>
+  <line class="edge" x1="28.20" y1="68.00" x2="31.80" y2="68.00"/>
+  <line class="edge" x1="30.00" y1="66.20" x2="30.00" y2="69.80"/>
+</svg>

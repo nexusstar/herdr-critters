@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 194" width="240" height="194" shape-rendering="geometricPrecision">
+    
+    <style>
+      polygon, path, ellipse { stroke:#6e8298; stroke-width:0.8; stroke-linejoin:round; }
+      .wall { fill:#e6f1fa; }
+      .shade { fill:#9ca4aa; }
+      .roof { fill:#7bb5d6; }
+      .roofshade { fill:#59829a; }
+      .metal { fill:#bed1df; }
+      .metalshade { fill:#808d96; }
+      .win { fill:#9fd8ff; stroke-width:.45; }
+      .windim { fill:#7ca8c7; stroke-width:.45; }
+      .door { fill:#686c70; stroke-width:.5; }
+      .ground { fill:#dceefa; }
+      .lot { fill:#f4f9ff; stroke-width:.5;  }
+      .road { fill:#a9c4d8; stroke:none; }
+      .sidel { fill:#8fb0cc; }
+      .sider { fill:#6e8eab; }
+      .grass { fill:#8fd65a; stroke-width:.5; }
+      .water { fill:#5cc6ff; stroke-width:.5; }
+      .tree { fill:#9be05a; stroke-width:.6; }
+      .tree2 { fill:#5fbf3a; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#ffffff; stroke-width:.8; stroke-dasharray:3 3; }
+      .rim { stroke:#ffffff; stroke-width:.8; }
+      .trunk { stroke:#8a6a4a; stroke-width:1.2; }
+      .leg { stroke:#9cc455; stroke-width:1.4; }
+      .fence { stroke:#c3f56a; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#6e8298; stroke-width:.8; }
+      .trimline { stroke:#c3f56a; stroke-width:.9; fill:none; }
+      .accent { stroke:#ee7bd7; stroke-width:1; fill:none; }
+      .crane { fill:#c3f56a; stroke-width:.5; }
+      .craneshade { fill:#88ac4a; stroke-width:.5; }
+      .accentfill { fill:#ee7bd7; stroke-width:.4; }
+      .brick { stroke:#647b8f; stroke-width:.6; }
+      .hi { stroke:#ffffff; stroke-width:.7; fill:none; }
+      .winc { fill:#c3f56a; stroke-width:.4; }
+      .wine { fill:#ee7bd7; stroke-width:.4; }
+      .windark { fill:#5c6064; stroke-width:.4; }
+      .neon { stroke:#ee7bd7; stroke-width:.9; fill:none; }
+      .neon2 { stroke:#c3f56a; stroke-width:.9; fill:none; }
+      .holo { fill:#c3f56a; fill-opacity:.45; stroke:#c3f56a; stroke-width:.5; }
+      .glass { fill:#ffffff; fill-opacity:.13; stroke:#c3f56a; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#c3f56a; stroke-width:1.3; fill:none; }
+      .fire { stroke:#6b873a; stroke-width:.55; fill:none; }
+      .plank { stroke:#8a9196; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#ffffff; stroke-width:.5; }
+      .sil { fill:#ffffff; stroke:#9aa7af; stroke-width:.5; }
+      .silside { fill:#d1e2ee; stroke:#9aa7af; stroke-width:.5; }
+      .siltop { fill:#ffffff; stroke:#9aa7af; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#ffffff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#8ba1b1; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="sidel" points="0.00,122.00 120.00,182.00 120.00,192.00 0.00,132.00"/>
+  <polygon class="sider" points="240.00,122.00 120.00,182.00 120.00,192.00 240.00,132.00"/>
+  <polygon class="ground" points="120.00,62.00 240.00,122.00 120.00,182.00 0.00,122.00"/>
+  <polygon class="road" points="85.00,79.50 205.00,139.50 195.00,144.50 75.00,84.50"/>
+  <polygon class="road" points="155.00,79.50 165.00,84.50 45.00,144.50 35.00,139.50"/>
+  <polygon class="road" points="45.00,99.50 165.00,159.50 155.00,164.50 35.00,104.50"/>
+  <polygon class="road" points="195.00,99.50 205.00,104.50 85.00,164.50 75.00,159.50"/>
+  <line class="lane" x1="82.00" y1="83.00" x2="198.00" y2="141.00"/>
+  <line class="lane" x1="158.00" y1="83.00" x2="42.00" y2="141.00"/>
+  <line class="lane" x1="42.00" y1="103.00" x2="158.00" y2="161.00"/>
+  <line class="lane" x1="198.00" y1="103.00" x2="82.00" y2="161.00"/>
+  <polygon class="lot" points="120.00,67.00 150.00,82.00 120.00,97.00 90.00,82.00"/>
+  <polygon class="lot" points="80.00,87.00 110.00,102.00 80.00,117.00 50.00,102.00"/>
+  <polygon class="lot" points="40.00,107.00 70.00,122.00 40.00,137.00 10.00,122.00"/>
+  <polygon class="lot" points="160.00,87.00 190.00,102.00 160.00,117.00 130.00,102.00"/>
+  <polygon class="grass" points="120.00,107.00 150.00,122.00 120.00,137.00 90.00,122.00"/>
+  <polygon class="lot" points="80.00,127.00 110.00,142.00 80.00,157.00 50.00,142.00"/>
+  <polygon class="lot" points="200.00,107.00 230.00,122.00 200.00,137.00 170.00,122.00"/>
+  <polygon class="lot" points="160.00,127.00 190.00,142.00 160.00,157.00 130.00,142.00"/>
+  <polygon class="lot" points="120.00,147.00 150.00,162.00 120.00,177.00 90.00,162.00"/>
+  <ellipse class="water" cx="120.0" cy="123.0" rx="11" ry="5.5"/>
+  <path class="hi" d="M114.0 122.0q3 -1.5 6 0M121.0 125.0q2.5 -1.2 5 0"/>
+  <line class="trunk" x1="119.00" y1="111.50" x2="119.00" y2="107.50"/>
+  <ellipse class="tree2" cx="119.0" cy="105.5" rx="3.6" ry="3.2"/>
+  <line class="trunk" x1="140.00" y1="122.00" x2="140.00" y2="118.00"/>
+  <ellipse class="tree" cx="140.0" cy="116.0" rx="3.6" ry="3.2"/>
+  <line class="trunk" x1="100.00" y1="122.00" x2="100.00" y2="118.00"/>
+  <ellipse class="tree" cx="100.0" cy="116.0" rx="3.6" ry="3.2"/>
+  <line class="trunk" x1="123.00" y1="131.50" x2="123.00" y2="127.50"/>
+  <ellipse class="tree2" cx="123.0" cy="125.5" rx="3.6" ry="3.2"/>
+  <line class="trunk" x1="132.00" y1="116.00" x2="132.00" y2="112.00"/>
+  <ellipse class="tree" cx="132.0" cy="110.0" rx="3.6" ry="3.2"/>
+  <line class="rim" x1="0.00" y1="122.00" x2="120.00" y2="182.00"/>
+  <line class="rim" x1="240.00" y1="122.00" x2="120.00" y2="182.00"/>
+</svg>

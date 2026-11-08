@@ -1,0 +1,158 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 194" width="240" height="194" shape-rendering="geometricPrecision">
+    <defs><filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="1" result="b"/><feFlood flood-color="#ff8bdf" flood-opacity=".8"/>
+      <feComposite in2="b" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter></defs>
+    <style>
+      polygon, path, ellipse { stroke:#0b2742; stroke-width:0.8; stroke-linejoin:round; }
+      .wall { fill:#2f8fc0; }
+      .shade { fill:#206183; }
+      .roof { fill:#17628a; }
+      .roofshade { fill:#114763; }
+      .metal { fill:#3566a2; }
+      .metalshade { fill:#24456d; }
+      .win { fill:#c5ffff; stroke-width:.45; }
+      .windim { fill:#9ac7c7; stroke-width:.45; }
+      .door { fill:#154056; stroke-width:.5; }
+      .ground { fill:#0f2c4c; }
+      .lot { fill:#24405a; stroke-width:.5;  }
+      .road { fill:#0a2038; stroke:none; }
+      .sidel { fill:#0a1f38; }
+      .sider { fill:#061526; }
+      .grass { fill:#1d5d6a; stroke-width:.5; }
+      .water { fill:#041427; stroke-width:.5; }
+      .tree { fill:#ff8bdf; stroke-width:.6; }
+      .tree2 { fill:#c86ad0; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#53e4ef; stroke-width:.8; stroke-dasharray:3 3; filter:url(#glow); }
+      .rim { stroke:#ff8bdf; stroke-width:.8; filter:url(#glow); }
+      .trunk { stroke:#b0507a; stroke-width:1.2; }
+      .leg { stroke:#5dcccc; stroke-width:1.4; }
+      .fence { stroke:#74ffff; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#0b2742; stroke-width:.8; }
+      .trimline { stroke:#74ffff; stroke-width:.9; fill:none; }
+      .accent { stroke:#ff8bdf; stroke-width:1; fill:none; filter:url(#glow); }
+      .crane { fill:#74ffff; stroke-width:.5; }
+      .craneshade { fill:#51b2b2; stroke-width:.5; }
+      .accentfill { fill:#ff8bdf; stroke-width:.4; filter:url(#glow); }
+      .brick { stroke:#071627; stroke-width:.6; }
+      .hi { stroke:#53e4ef; stroke-width:.7; fill:none; }
+      .winc { fill:#74ffff; stroke-width:.4; filter:url(#glow); }
+      .wine { fill:#ff8bdf; stroke-width:.4; filter:url(#glow); }
+      .windark { fill:#13394d; stroke-width:.4; }
+      .neon { stroke:#ff8bdf; stroke-width:.9; fill:none; filter:url(#glow); }
+      .neon2 { stroke:#74ffff; stroke-width:.9; fill:none; filter:url(#glow); }
+      .holo { fill:#74ffff; fill-opacity:.45; stroke:#74ffff; stroke-width:.5; filter:url(#glow); }
+      .glass { fill:#53e4ef; fill-opacity:.13; stroke:#74ffff; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#74ffff; stroke-width:1.3; fill:none; }
+      .fire { stroke:#408c8c; stroke-width:.55; fill:none; }
+      .plank { stroke:#1c5673; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#18467a; stroke-width:.5; }
+      .sil { fill:#13375f; stroke:#0a1f35; stroke-width:.5; }
+      .silside { fill:#0e2a48; stroke:#0a1f35; stroke-width:.5; }
+      .siltop { fill:#164272; stroke:#0a1f35; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#53e4ef; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#081a2e; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="shaft" points="26.00,0.00 38.00,0.00 72.00,150.00 38.00,150.00"/>
+  <polygon class="shaft" points="96.00,0.00 112.00,0.00 146.00,150.00 108.00,150.00"/>
+  <polygon class="shaft" points="170.00,0.00 183.00,0.00 217.00,150.00 182.00,150.00"/>
+  <polygon class="sidel" points="0.00,122.00 120.00,182.00 120.00,192.00 0.00,132.00"/>
+  <polygon class="sider" points="240.00,122.00 120.00,182.00 120.00,192.00 240.00,132.00"/>
+  <polygon class="ground" points="120.00,62.00 240.00,122.00 120.00,182.00 0.00,122.00"/>
+  <polygon class="road" points="85.00,79.50 205.00,139.50 195.00,144.50 75.00,84.50"/>
+  <polygon class="road" points="155.00,79.50 165.00,84.50 45.00,144.50 35.00,139.50"/>
+  <polygon class="road" points="45.00,99.50 165.00,159.50 155.00,164.50 35.00,104.50"/>
+  <polygon class="road" points="195.00,99.50 205.00,104.50 85.00,164.50 75.00,159.50"/>
+  <polygon class="lot" points="120.00,67.00 150.00,82.00 120.00,97.00 90.00,82.00"/>
+  <polygon class="lot" points="80.00,87.00 110.00,102.00 80.00,117.00 50.00,102.00"/>
+  <polygon class="lot" points="40.00,107.00 70.00,122.00 40.00,137.00 10.00,122.00"/>
+  <polygon class="lot" points="160.00,87.00 190.00,102.00 160.00,117.00 130.00,102.00"/>
+  <polygon class="grass" points="120.00,107.00 150.00,122.00 120.00,137.00 90.00,122.00"/>
+  <polygon class="lot" points="80.00,127.00 110.00,142.00 80.00,157.00 50.00,142.00"/>
+  <polygon class="lot" points="200.00,107.00 230.00,122.00 200.00,137.00 170.00,122.00"/>
+  <polygon class="lot" points="160.00,127.00 190.00,142.00 160.00,157.00 130.00,142.00"/>
+  <polygon class="lot" points="120.00,147.00 150.00,162.00 120.00,177.00 90.00,162.00"/>
+  <ellipse class="water" cx="120.0" cy="123.0" rx="11" ry="5.5"/>
+  <path class="hi" d="M114.0 122.0q3 -1.5 6 0M121.0 125.0q2.5 -1.2 5 0"/>
+  <path class="accent" d="M119.0 111.5q-2 -4 0 -7q2 -3 0 -6" style="stroke:#c86ad0"/>
+  <path class="accent" d="M140.0 122.0q-2 -4 0 -7q2 -3 0 -6" style="stroke:#ff8bdf"/>
+  <path class="accent" d="M100.0 122.0q-2 -4 0 -7q2 -3 0 -6" style="stroke:#c86ad0"/>
+  <path class="accent" d="M123.0 131.5q-2 -4 0 -7q2 -3 0 -6" style="stroke:#ff8bdf"/>
+  <path class="accent" d="M132.0 116.0q-2 -4 0 -7q2 -3 0 -6" style="stroke:#c86ad0"/>
+  <line class="rim" x1="0.00" y1="122.00" x2="120.00" y2="182.00"/>
+  <line class="rim" x1="240.00" y1="122.00" x2="120.00" y2="182.00"/>
+  <circle class="hi" cx="30" cy="40" r="1.6"/>
+  <circle class="hi" cx="36" cy="30" r="1.1"/>
+  <circle class="hi" cx="210" cy="50" r="1.4"/>
+  <circle class="hi" cx="204" cy="38" r="0.9"/>
+  <circle class="hi" cx="120" cy="20" r="1.2"/>
+  <polygon class="glass" points="84.00,77.00 202.00,136.00 196.00,139.00 78.00,80.00"/>
+  <polygon class="glass" points="78.00,84.00 196.00,143.00 196.00,139.00 78.00,80.00"/>
+  <line class="glassline" x1="82.50" y1="78.75" x2="198.50" y2="136.75"/>
+  <line class="ring" x1="85.00" y1="87.50" x2="85.00" y2="83.50"/>
+  <line class="ring" x1="101.00" y1="95.50" x2="101.00" y2="91.50"/>
+  <line class="ring" x1="117.00" y1="103.50" x2="117.00" y2="99.50"/>
+  <line class="ring" x1="133.00" y1="111.50" x2="133.00" y2="107.50"/>
+  <line class="ring" x1="149.00" y1="119.50" x2="149.00" y2="115.50"/>
+  <line class="ring" x1="165.00" y1="127.50" x2="165.00" y2="123.50"/>
+  <line class="ring" x1="181.00" y1="135.50" x2="181.00" y2="131.50"/>
+  <polygon class="glass" points="156.00,77.00 38.00,136.00 44.00,139.00 162.00,80.00"/>
+  <polygon class="glass" points="162.00,84.00 44.00,143.00 44.00,139.00 162.00,80.00"/>
+  <line class="glassline" x1="157.50" y1="78.75" x2="41.50" y2="136.75"/>
+  <line class="ring" x1="155.00" y1="87.50" x2="155.00" y2="83.50"/>
+  <line class="ring" x1="139.00" y1="95.50" x2="139.00" y2="91.50"/>
+  <line class="ring" x1="123.00" y1="103.50" x2="123.00" y2="99.50"/>
+  <line class="ring" x1="107.00" y1="111.50" x2="107.00" y2="107.50"/>
+  <line class="ring" x1="91.00" y1="119.50" x2="91.00" y2="115.50"/>
+  <line class="ring" x1="75.00" y1="127.50" x2="75.00" y2="123.50"/>
+  <line class="ring" x1="59.00" y1="135.50" x2="59.00" y2="131.50"/>
+  <polygon class="glass" points="44.00,97.00 162.00,156.00 156.00,159.00 38.00,100.00"/>
+  <polygon class="glass" points="38.00,104.00 156.00,163.00 156.00,159.00 38.00,100.00"/>
+  <line class="glassline" x1="42.50" y1="98.75" x2="158.50" y2="156.75"/>
+  <line class="ring" x1="45.00" y1="107.50" x2="45.00" y2="103.50"/>
+  <line class="ring" x1="61.00" y1="115.50" x2="61.00" y2="111.50"/>
+  <line class="ring" x1="77.00" y1="123.50" x2="77.00" y2="119.50"/>
+  <line class="ring" x1="93.00" y1="131.50" x2="93.00" y2="127.50"/>
+  <line class="ring" x1="109.00" y1="139.50" x2="109.00" y2="135.50"/>
+  <line class="ring" x1="125.00" y1="147.50" x2="125.00" y2="143.50"/>
+  <line class="ring" x1="141.00" y1="155.50" x2="141.00" y2="151.50"/>
+  <polygon class="glass" points="196.00,97.00 78.00,156.00 84.00,159.00 202.00,100.00"/>
+  <polygon class="glass" points="202.00,104.00 84.00,163.00 84.00,159.00 202.00,100.00"/>
+  <line class="glassline" x1="197.50" y1="98.75" x2="81.50" y2="156.75"/>
+  <line class="ring" x1="195.00" y1="107.50" x2="195.00" y2="103.50"/>
+  <line class="ring" x1="179.00" y1="115.50" x2="179.00" y2="111.50"/>
+  <line class="ring" x1="163.00" y1="123.50" x2="163.00" y2="119.50"/>
+  <line class="ring" x1="147.00" y1="131.50" x2="147.00" y2="127.50"/>
+  <line class="ring" x1="131.00" y1="139.50" x2="131.00" y2="135.50"/>
+  <line class="ring" x1="115.00" y1="147.50" x2="115.00" y2="143.50"/>
+  <line class="ring" x1="99.00" y1="155.50" x2="99.00" y2="151.50"/>
+  <circle cx="120.0" cy="98.0" r="4" style="fill:#74ffff;fill-opacity:.15;stroke:none"/>
+  <circle cx="120.0" cy="98.0" r="1.3" style="fill:#74ffff;stroke:none"/>
+  <circle cx="80.0" cy="118.0" r="4" style="fill:#74ffff;fill-opacity:.15;stroke:none"/>
+  <circle cx="80.0" cy="118.0" r="1.3" style="fill:#74ffff;stroke:none"/>
+  <circle cx="160.0" cy="118.0" r="4" style="fill:#74ffff;fill-opacity:.15;stroke:none"/>
+  <circle cx="160.0" cy="118.0" r="1.3" style="fill:#74ffff;stroke:none"/>
+  <circle cx="120.0" cy="138.0" r="4" style="fill:#74ffff;fill-opacity:.15;stroke:none"/>
+  <circle cx="120.0" cy="138.0" r="1.3" style="fill:#74ffff;stroke:none"/>
+  <ellipse class="rock" cx="106.5" cy="70.2" rx="2.1" ry="1.6"/>
+  <path class="accent" d="M60.5 94.2q-2 -5.6 0 -11.2q2 -4.5 0 -9.0" style="stroke:#c86ad0"/>
+  <path class="accent" d="M18.5 115.2q-2 -5.5 0 -11.0q2 -4.4 0 -8.8" style="stroke:#c86ad0"/>
+  <ellipse class="rock" cx="133.5" cy="70.2" rx="3.2" ry="1.6"/>
+  <ellipse class="rock" cx="180.5" cy="93.8" rx="3.0" ry="1.6"/>
+  <ellipse class="rock" cx="221.5" cy="114.2" rx="2.4" ry="1.6"/>
+  <path class="accent" d="M204.5 137.2q-2 -4.7 0 -9.4q2 -3.8 0 -7.5" style="stroke:#c86ad0"/>
+  <ellipse class="rock" cx="35.5" cy="136.2" rx="3.2" ry="1.6"/>
+  <path class="accent" d="M141.5 168.8q-2 -5.2 0 -10.4q2 -4.2 0 -8.3" style="stroke:#c86ad0"/>
+  <path class="accent" d="M98.5 168.8q-2 -4.9 0 -9.8q2 -3.9 0 -7.9" style="stroke:#c86ad0"/>
+</svg>

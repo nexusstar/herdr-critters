@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 92" width="60" height="92" shape-rendering="geometricPrecision">
+    
+    <style>
+      polygon, path, ellipse { stroke:#624936; stroke-width:0.9; stroke-linejoin:round; }
+      .wall { fill:#b8483a; }
+      .shade { fill:#7d3127; }
+      .roof { fill:#5f5a55; }
+      .roofshade { fill:#44413d; }
+      .metal { fill:#c89c69; }
+      .metalshade { fill:#876947; }
+      .win { fill:#f8f2d8; stroke-width:.45; }
+      .windim { fill:#c1bda8; stroke-width:.45; }
+      .door { fill:#53201a; stroke-width:.5; }
+      .ground { fill:#b9d58e; }
+      .lot { fill:#d8e8b0; stroke-width:.5; stroke-dasharray:1.4 1.2; }
+      .road { fill:#e8d3a8; stroke:none; }
+      .sidel { fill:#8a6a48; }
+      .sider { fill:#6e5236; }
+      .grass { fill:#8fbf6a; stroke-width:.5; }
+      .water { fill:#8fc8e0; stroke-width:.5; }
+      .tree { fill:#7fb85a; stroke-width:.6; }
+      .tree2 { fill:#f2a0c0; stroke-width:.6; }
+      line { stroke-linecap:round; }
+      .lane { stroke:#fff0c9; stroke-width:.8; stroke-dasharray:3 3; }
+      .rim { stroke:#ffffff; stroke-width:.8; }
+      .trunk { stroke:#7a5a3a; stroke-width:1.2; }
+      .leg { stroke:#ccc0a1; stroke-width:1.4; }
+      .fence { stroke:#fff0c9; stroke-width:.7; stroke-dasharray:1.5 1.5; fill:none; }
+      .edge { stroke:#624936; stroke-width:.8; }
+      .trimline { stroke:#fff0c9; stroke-width:.9; fill:none; }
+      .accent { stroke:#e07aa5; stroke-width:1; fill:none; }
+      .crane { fill:#fff0c9; stroke-width:.5; }
+      .craneshade { fill:#b2a88d; stroke-width:.5; }
+      .accentfill { fill:#e07aa5; stroke-width:.4; }
+      .brick { stroke:#614a32; stroke-width:.6; }
+      .hi { stroke:#ffffff; stroke-width:.7; fill:none; }
+      .winc { fill:#fff0c9; stroke-width:.4; }
+      .wine { fill:#e07aa5; stroke-width:.4; }
+      .windark { fill:#4a1d17; stroke-width:.4; }
+      .neon { stroke:#e07aa5; stroke-width:.9; fill:none; }
+      .neon2 { stroke:#fff0c9; stroke-width:.9; fill:none; }
+      .holo { fill:#fff0c9; fill-opacity:.45; stroke:#fff0c9; stroke-width:.5; }
+      .glass { fill:#ffffff; fill-opacity:.13; stroke:#fff0c9; stroke-opacity:.75; stroke-width:.8; }
+      .glassline { stroke:#ffffff; stroke-opacity:.45; stroke-width:.8; fill:none; }
+      .ring { stroke:#fff0c9; stroke-width:1.3; fill:none; }
+      .fire { stroke:#8c846f; stroke-width:.55; fill:none; }
+      .plank { stroke:#6e2b23; stroke-width:.4; stroke-opacity:.8; }
+      .soil { fill:#9a7350; stroke-width:.5; }
+      .wheat { stroke:#e6c35c; stroke-width:1.1; }
+      .pumpkin { fill:#e8823a; stroke-width:.5; }
+      .vine { stroke:#5f8f3e; stroke-width:.9; fill:none; }
+      .hay { fill:#e8c870; stroke-width:.5; }
+      .rock { fill:#ffffe3; stroke-width:.5; }
+      .sil { fill:#e7ffb2; stroke:#829563; stroke-width:.5; }
+      .silside { fill:#b0ca87; stroke:#829563; stroke-width:.5; }
+      .siltop { fill:#ffffd5; stroke:#829563; stroke-width:.5; }
+      .beam { fill:#efe8d0; fill-opacity:.07; stroke:none; }
+      .shaft { fill:#ffffff; fill-opacity:.05; stroke:none; }
+      .fog { fill:#9a978c; fill-opacity:.13; stroke:none; }
+      .rut { stroke:#bead8a; stroke-width:.7; }
+      .post { stroke:#7a5a3a; stroke-width:1; }
+      .rail { stroke:#9a7350; stroke-width:.7; }
+    </style>
+  <polygon class="soil" points="30.00,63.00 54.00,75.00 30.00,87.00 6.00,75.00"/>
+  <line class="wheat" x1="29.50" y1="64.75" x2="28.90" y2="60.25"/>
+  <line class="wheat" x1="31.70" y1="65.85" x2="31.10" y2="61.35"/>
+  <line class="wheat" x1="33.90" y1="66.95" x2="33.30" y2="62.45"/>
+  <line class="wheat" x1="36.10" y1="68.05" x2="35.50" y2="63.55"/>
+  <line class="wheat" x1="38.30" y1="69.15" x2="37.70" y2="64.65"/>
+  <line class="wheat" x1="40.50" y1="70.25" x2="39.90" y2="65.75"/>
+  <line class="wheat" x1="42.70" y1="71.35" x2="42.10" y2="66.85"/>
+  <line class="wheat" x1="44.90" y1="72.45" x2="44.30" y2="67.95"/>
+  <line class="wheat" x1="47.10" y1="73.55" x2="46.50" y2="69.05"/>
+  <line class="wheat" x1="49.30" y1="74.65" x2="48.70" y2="70.15"/>
+  <line class="wheat" x1="26.10" y1="66.45" x2="25.50" y2="61.95"/>
+  <line class="wheat" x1="28.30" y1="67.55" x2="27.70" y2="63.05"/>
+  <line class="wheat" x1="30.50" y1="68.65" x2="29.90" y2="64.15"/>
+  <line class="wheat" x1="32.70" y1="69.75" x2="32.10" y2="65.25"/>
+  <line class="wheat" x1="34.90" y1="70.85" x2="34.30" y2="66.35"/>
+  <line class="wheat" x1="37.10" y1="71.95" x2="36.50" y2="67.45"/>
+  <line class="wheat" x1="39.30" y1="73.05" x2="38.70" y2="68.55"/>
+  <line class="wheat" x1="41.50" y1="74.15" x2="40.90" y2="69.65"/>
+  <line class="wheat" x1="43.70" y1="75.25" x2="43.10" y2="70.75"/>
+  <line class="wheat" x1="45.90" y1="76.35" x2="45.30" y2="71.85"/>
+  <line class="wheat" x1="22.70" y1="68.15" x2="22.10" y2="63.65"/>
+  <line class="wheat" x1="24.90" y1="69.25" x2="24.30" y2="64.75"/>
+  <line class="wheat" x1="27.10" y1="70.35" x2="26.50" y2="65.85"/>
+  <line class="wheat" x1="29.30" y1="71.45" x2="28.70" y2="66.95"/>
+  <line class="wheat" x1="31.50" y1="72.55" x2="30.90" y2="68.05"/>
+  <line class="wheat" x1="33.70" y1="73.65" x2="33.10" y2="69.15"/>
+  <line class="wheat" x1="35.90" y1="74.75" x2="35.30" y2="70.25"/>
+  <line class="wheat" x1="38.10" y1="75.85" x2="37.50" y2="71.35"/>
+  <line class="wheat" x1="40.30" y1="76.95" x2="39.70" y2="72.45"/>
+  <line class="wheat" x1="42.50" y1="78.05" x2="41.90" y2="73.55"/>
+  <line class="wheat" x1="19.30" y1="69.85" x2="18.70" y2="65.35"/>
+  <line class="wheat" x1="21.50" y1="70.95" x2="20.90" y2="66.45"/>
+  <line class="wheat" x1="23.70" y1="72.05" x2="23.10" y2="67.55"/>
+  <line class="wheat" x1="25.90" y1="73.15" x2="25.30" y2="68.65"/>
+  <line class="wheat" x1="28.10" y1="74.25" x2="27.50" y2="69.75"/>
+  <line class="wheat" x1="30.30" y1="75.35" x2="29.70" y2="70.85"/>
+  <line class="wheat" x1="32.50" y1="76.45" x2="31.90" y2="71.95"/>
+  <line class="wheat" x1="34.70" y1="77.55" x2="34.10" y2="73.05"/>
+  <line class="wheat" x1="36.90" y1="78.65" x2="36.30" y2="74.15"/>
+  <line class="wheat" x1="39.10" y1="79.75" x2="38.50" y2="75.25"/>
+  <line class="wheat" x1="15.90" y1="71.55" x2="15.30" y2="67.05"/>
+  <line class="wheat" x1="18.10" y1="72.65" x2="17.50" y2="68.15"/>
+  <line class="wheat" x1="20.30" y1="73.75" x2="19.70" y2="69.25"/>
+  <line class="wheat" x1="22.50" y1="74.85" x2="21.90" y2="70.35"/>
+  <line class="wheat" x1="24.70" y1="75.95" x2="24.10" y2="71.45"/>
+  <line class="wheat" x1="26.90" y1="77.05" x2="26.30" y2="72.55"/>
+  <line class="wheat" x1="29.10" y1="78.15" x2="28.50" y2="73.65"/>
+  <line class="wheat" x1="31.30" y1="79.25" x2="30.70" y2="74.75"/>
+  <line class="wheat" x1="33.50" y1="80.35" x2="32.90" y2="75.85"/>
+  <line class="wheat" x1="35.70" y1="81.45" x2="35.10" y2="76.95"/>
+  <line class="wheat" x1="12.50" y1="73.25" x2="11.90" y2="68.75"/>
+  <line class="wheat" x1="14.70" y1="74.35" x2="14.10" y2="69.85"/>
+  <line class="wheat" x1="16.90" y1="75.45" x2="16.30" y2="70.95"/>
+  <line class="wheat" x1="19.10" y1="76.55" x2="18.50" y2="72.05"/>
+  <line class="wheat" x1="21.30" y1="77.65" x2="20.70" y2="73.15"/>
+  <line class="wheat" x1="23.50" y1="78.75" x2="22.90" y2="74.25"/>
+  <line class="wheat" x1="25.70" y1="79.85" x2="25.10" y2="75.35"/>
+  <line class="wheat" x1="27.90" y1="80.95" x2="27.30" y2="76.45"/>
+  <line class="wheat" x1="30.10" y1="82.05" x2="29.50" y2="77.55"/>
+  <line class="wheat" x1="32.30" y1="83.15" x2="31.70" y2="78.65"/>
+  <line class="wheat" x1="9.10" y1="74.95" x2="8.50" y2="70.45"/>
+  <line class="wheat" x1="11.30" y1="76.05" x2="10.70" y2="71.55"/>
+  <line class="wheat" x1="13.50" y1="77.15" x2="12.90" y2="72.65"/>
+  <line class="wheat" x1="15.70" y1="78.25" x2="15.10" y2="73.75"/>
+  <line class="wheat" x1="17.90" y1="79.35" x2="17.30" y2="74.85"/>
+  <line class="wheat" x1="20.10" y1="80.45" x2="19.50" y2="75.95"/>
+  <line class="wheat" x1="22.30" y1="81.55" x2="21.70" y2="77.05"/>
+  <line class="wheat" x1="24.50" y1="82.65" x2="23.90" y2="78.15"/>
+  <line class="wheat" x1="26.70" y1="83.75" x2="26.10" y2="79.25"/>
+  <line class="wheat" x1="28.90" y1="84.85" x2="28.30" y2="80.35"/>
+</svg>

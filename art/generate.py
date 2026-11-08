@@ -27,7 +27,8 @@ Run from the repo root:
     uv run --no-project art/generate.py --theme <id> --batch <name> <dir>
 The second form draws only that sprite batch into <dir>, leaving the mod's art alone.
 A full theme run also writes its eight space-factory SVGs from
-art/space_factory_art.py (including for raster critter themes).
+art/space_factory_art.py and the isometric city (plate, empty lot and one
+building per factory type) from art/space_city_art.py, both SVG in every theme.
 """
 
 import argparse
@@ -39,6 +40,7 @@ from types import ModuleType
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from art.space_city_art import generate as generate_city_art
 from art.space_factory_art import generate as generate_space_art
 
 STATUSES = ("idle", "working", "blocked", "done")
@@ -170,6 +172,8 @@ def main() -> None:
     if not args.batch:
         count = generate_space_art(args.theme, out)
         print(f"wrote {count} space factory icons to {out}")
+        count = generate_city_art(args.theme, out)
+        print(f"wrote {count} isometric city files to {out}")
 
 
 if __name__ == "__main__":
